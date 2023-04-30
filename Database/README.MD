@@ -1,4 +1,4 @@
-Para o banco de dados do sistema, foram desenvolvidas as seguintes entidades:
+Para o banco de dados do sistema, foram desenvolvidas as seguintes conceitos:
 
 ## Entidades/Tabelas
 -   Cliente
