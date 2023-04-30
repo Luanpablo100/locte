@@ -22,7 +22,7 @@ Para o banco de dados do sistema, foram desenvolvidas as seguintes conceitos:
 -   Tipo
 -   Placa
 -   Cor
--   Ano de fabricação
+-   Ano
 -   Quilometragem
 
 ### Reserva:
@@ -48,16 +48,15 @@ Para o banco de dados do sistema, foram desenvolvidas as seguintes conceitos:
 -   ID (identificador)
 -   Nome
 -   Cargo
--   Endereço
 -   Telefone
 -   E-mail
 
 ### Conta:
 
--   ID (identificador único)
+-   ID (identificador)
 -   Nome de usuário
 -   Senha
--   ID do cliente ou funcionário
+-   Perfil
 
 ## Relacionamentos
 Possuindo os relacionamentos baseados nos seguintes conceitos:
