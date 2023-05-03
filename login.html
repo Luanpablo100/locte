@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <!-- <link rel="stylesheet" href="../Style/normalize.css"> -->
-    <link rel="stylesheet" href="/Style/login.css">
+    <link rel="stylesheet" href="./Style/login.css">
 </head>
 <body>
     <div class="container">
@@ -18,13 +18,13 @@
                     <!-- <small>Seu sistema de locação de veículos</small> -->
                 </h2>
             </div>
-            <form class="card-form" action="/">
+            <form class="card-form" action="./Src/login.php" method="POST">
                 <div class="input">
-                    <input type="text" class="input-field" required/>
+                    <input type="text" class="input-field" required id="user_login" name="user_login"/>
                     <label class="input-label">Usuário</label>
                 </div>
                             <div class="input">
-                    <input type="password" class="input-field" required/>
+                    <input type="password" class="input-field" required id="passwd_login" name="passwd_login"/>
                     <label class="input-label">Senha</label>
                 </div>
                 <div class="action">
