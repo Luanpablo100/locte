@@ -1,4 +1,4 @@
-<?php require('valida_admin.php');?>
+<?php require('./src/valida_admin.php');?>
 
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -71,7 +71,9 @@
                 <a href="./users.html">Usuários</a>
             </li>
             <li>
-                <a href="../login.html">Logoff</a>
+                <form action="../src/logoff.php">
+                    <button>Logoff</button>
+                </form>
             </li>
         </ul>
     </aside>

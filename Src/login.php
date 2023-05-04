@@ -1,11 +1,5 @@
 <?php session_start();
-	// $servidor = "localhost";
-	// $usuario = "root";
-	// $senha = "";
-	// $db_name = "locte_db";
-
 	require('conexao.php');
-
 
 	if (isset($_POST['user_login'])) {      
 	
@@ -15,7 +9,6 @@
 	
 
 		try {
-			// $conn = mysqli_connect($servidor, $usuario, $senha, $db_name) or die('Banco de dados indisponível.');
 
 			$sql_valida_login = mysqli_query($conexao,"SELECT * FROM conta WHERE usuario = '".$user_login."' AND senha = '".$passwd_login."'");
 		  } catch (\Throwable $th) {
@@ -32,7 +25,7 @@
 				 
 			// $_SESSION['nome_completo_login'] = $registros_login['nome_completo_login'];
 			// $_SESSION['nome_completo_login'] = $registros_login['nome_completo_login'];
-			// $_SESSION['nome_login'] = $registros_login['nome_login'];
+			$_SESSION['usuario'] = $registros_login['usuario'];
 			$_SESSION['perfil'] = $registros_login['perfil'];
 
 
@@ -43,16 +36,13 @@
 			
 				if($_SESSION['perfil'] == "Admin"){
 
-					/*echo "<script> alert('Administrador [LOGADO]');</script>";*/
+					echo "<script> alert('Administrador [LOGADO]');</script>";
 
 					echo "<script> window.location.href='$url_admin';</script>";	
 
-
-
-
 				}else{
 
-					/*echo "<script> alert('Cliente [LOGADO]');</script>";*/
+					echo "<script> alert('Cliente [LOGADO]');</script>";
 
 					echo "<script> window.location.href='$url_cliente';</script>";
 
