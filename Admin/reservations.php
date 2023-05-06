@@ -3,7 +3,7 @@
 require('../src/conexao.php');
 
 //Script que faz o select das informações de reserva, incluindo o nome do cliente e modelo e marca do veiculo
-$select_reservas = mysqli_query($conexao, "SELECT reserva.*,cliente.nome,veiculo.marca,veiculo.modelo,veiculo.cor,veiculo.placa from reserva JOIN cliente on reserva.idCliente = cliente.id JOIN veiculo ON reserva.idVeiculo = veiculo.id ORDER BY data_hora_inicio ASC;");
+$select_reservas = mysqli_query($conexao, "SELECT reserva.*,cliente.nome,veiculo.marca,veiculo.modelo,veiculo.cor,veiculo.placa from reserva JOIN cliente on reserva.idCliente = cliente.id JOIN veiculo ON reserva.idVeiculo = veiculo.id ORDER BY hora_inicio ASC;");
             
     if (mysqli_num_rows($select_reservas) > 0) {
         
@@ -27,15 +27,15 @@ $select_reservas = mysqli_query($conexao, "SELECT reserva.*,cliente.nome,veiculo
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Locte - Gerenciamento de locação</title>
-    <link rel="stylesheet" href="../Style/normalize.css">
-    <link rel="stylesheet" href="../Style/main.css">
+    <link rel="stylesheet" href="../public/Style/normalize.css">
+    <link rel="stylesheet" href="../public/Style/main.css">
 </head>
 <body>
     <header class="header1">
         <a href="/locte/admin"><h1 class="h1Logo">Locte</h1></a>
         <h1 id="relogio"></h1>
         <nav class="header-nav">
-            <a href="edit-reservation.html"><button class="btn-nova-reserva">Nova reserva</button></a>
+            <a href="edit-reservation.php"><button class="btn-nova-reserva">Nova reserva</button></a>
             <div id="div-menu-hamburguer">
                 <img src="/Img/hambuguer-menu-removebg-preview.png" alt="Menu lateral" class="menuIcon">
             </div>
@@ -63,7 +63,8 @@ $select_reservas = mysqli_query($conexao, "SELECT reserva.*,cliente.nome,veiculo
                         <td><?php echo $dados_reserva['marca'];?>&nbsp<?php echo $dados_reserva['modelo'];?></td>
                         <td><?php echo $dados_reserva['cor'];?></td>
                         <td><?php echo $dados_reserva['placa'];?></td>
-						<td><?php echo $dados_reserva['data_hora_inicio'];?></td>
+                        <td><?php echo $dados_reserva['hora_inicio'];?></td>
+						<td><?php echo $dados_reserva['data_inicio'];?></td>
                         <td>X Y Z</td>
 						<td>
 
@@ -99,7 +100,7 @@ $select_reservas = mysqli_query($conexao, "SELECT reserva.*,cliente.nome,veiculo
                   <td>PUV-9244</td>
                   <td>Hoje</td>
                   <td>15:30</td>
-                  <td><div class="actions-div" ><img src="Img/correct.png" alt="" class="action-button" onclick="alert('Confirmar a reserva?')"><a href="edit-reservation.html"><img src="Img/editar.png" alt="" class="action-button"></a><img src="Img/erro.png" alt="" class="action-button" onclick="alert('Cancelar a reserva?')"></div></td>
+                  <td><div class="actions-div" ><img src="Img/correct.png" alt="" class="action-button" onclick="alert('Confirmar a reserva?')"><a href="edit-reservation.php"><img src="Img/editar.png" alt="" class="action-button"></a><img src="Img/erro.png" alt="" class="action-button" onclick="alert('Cancelar a reserva?')"></div></td>
                 </tr>
                 <tr>
                   <td>Manoela Silva</td>
@@ -108,7 +109,7 @@ $select_reservas = mysqli_query($conexao, "SELECT reserva.*,cliente.nome,veiculo
                   <td>JXP-5941</td>
                   <td>Hoje</td>
                   <td>16:00</td>
-                  <td><div class="actions-div" ><img src="Img/correct.png" alt="" class="action-button" onclick="alert('Confirmar a reserva?')"><a href="edit-reservation.html"><img src="Img/editar.png" alt="" class="action-button"></a><img src="Img/erro.png" alt="" class="action-button" onclick="alert('Cancelar a reserva?')"></div></td>
+                  <td><div class="actions-div" ><img src="Img/correct.png" alt="" class="action-button" onclick="alert('Confirmar a reserva?')"><a href="edit-reservation.php"><img src="Img/editar.png" alt="" class="action-button"></a><img src="Img/erro.png" alt="" class="action-button" onclick="alert('Cancelar a reserva?')"></div></td>
                 </tr>   
                 <tr>
                     <td>Manoela Silva</td>
@@ -117,7 +118,7 @@ $select_reservas = mysqli_query($conexao, "SELECT reserva.*,cliente.nome,veiculo
                     <td>PHP-7429</td>
                     <td>Amanhã</td>
                     <td>16:00</td>
-                    <td><div class="actions-div" ><img src="Img/correct.png" alt="" class="action-button" onclick="alert('Confirmar a reserva?')"><a href="edit-reservation.html"><img src="Img/editar.png" alt="" class="action-button"></a><img src="Img/erro.png" alt="" class="action-button" onclick="alert('Cancelar a reserva?')"></div></td>
+                    <td><div class="actions-div" ><img src="Img/correct.png" alt="" class="action-button" onclick="alert('Confirmar a reserva?')"><a href="edit-reservation.php"><img src="Img/editar.png" alt="" class="action-button"></a><img src="Img/erro.png" alt="" class="action-button" onclick="alert('Cancelar a reserva?')"></div></td>
                   </tr>   -->
               
               </table>
@@ -130,16 +131,16 @@ $select_reservas = mysqli_query($conexao, "SELECT reserva.*,cliente.nome,veiculo
                 Gerenciar
             </li>
             <li>
-                <a href="./vehicles.html">Veículos</a>
+                <a href="./vehicles.php">Veículos</a>
             </li>
             <li>
-                <a href="./reservations.html">Reservas</a>
+                <a href="./reservations.php">Reservas</a>
             </li>
             <li>
-                <a href="./devolutions.html">Devoluções</a>
+                <a href="./devolutions.php">Devoluções</a>
             </li>
             <li>
-                <a href="./users.html">Usuários</a>
+                <a href="./users.php">Usuários</a>
             </li>
             <li>
                 <form action="../src/logoff.php">
@@ -148,7 +149,7 @@ $select_reservas = mysqli_query($conexao, "SELECT reserva.*,cliente.nome,veiculo
             </li>
         </ul>
     </aside>
-    <script src="../Scripts/clock.js"></script>
-    <script src="../Scripts/asideMenu.js"></script>
+    <script src="../public/Scripts/clock.js"></script>
+    <script src="../public/Scripts/asideMenu.js"></script>
 </body>
 </html>

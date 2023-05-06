@@ -7,16 +7,16 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Locte - Gerenciamento de locação</title>
-    <link rel="stylesheet" href="../Style/normalize.css">
-    <link rel="stylesheet" href="../Style/main.css">
-    <link rel="stylesheet" href="../Style/reservation.css">
+    <link rel="stylesheet" href="../public/Style/normalize.css">
+    <link rel="stylesheet" href="../public/Style/main.css">
+    <link rel="stylesheet" href="../public/Style/reservation.css">
 </head>
 <body>
     <header class="header1">
         <a href="/locte/admin"><h1 class="h1Logo">Locte</h1></a>
         <h1 id="relogio"></h1>
         <nav class="header-nav">
-            <a href="reservation.html"><button class="btn-nova-reserva">Nova reserva</button></a>
+            <a href="reservation.php"><button class="btn-nova-reserva">Nova reserva</button></a>
             <div id="div-menu-hamburguer">
                 <img src="/Img/hambuguer-menu-removebg-preview.png" alt="Menu lateral" class="menuIcon">
             </div>
@@ -148,16 +148,16 @@
                 Gerenciar
             </li>
             <li>
-                <a href="vehicles.html">Veículos</a>
+                <a href="vehicles.php">Veículos</a>
             </li>
             <li>
-                <a href="reservations.html">Reservas</a>
+                <a href="reservations.php">Reservas</a>
             </li>
             <li>
-                <a href="./devolutions.html">Devoluções</a>
+                <a href="./devolutions.php">Devoluções</a>
             </li>
             <li>
-                <a href="users.html">Usuários</a>
+                <a href="users.php">Usuários</a>
             </li>
             <li>
                 <form action="../src/logoff.php">
@@ -166,7 +166,7 @@
             </li>
         </ul>
     </aside>
-    <script src="../Scripts/clock.js"></script>
-    <script src="../Scripts/asideMenu.js"></script>
+    <script src="../public/Scripts/clock.js"></script>
+    <script src="../public/Scripts/asideMenu.js"></script>
 </body>
 </html>

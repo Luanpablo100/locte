@@ -1,5 +1,25 @@
-<?php require('./src/valida_admin.php');?>
+<?php require('./src/valida_admin.php');
 
+require('../src/conexao.php');
+
+//Script que faz o select das informações de reserva, incluindo o nome do cliente e modelo e marca do veiculo
+$select_veiculos = mysqli_query($conexao, "SELECT * from veiculo ORDER BY marca ASC;");
+            
+    if (mysqli_num_rows($select_veiculos) > 0) {
+        
+        $dados_veiculos = mysqli_fetch_assoc($select_veiculos);
+        
+    } else {
+        
+        echo "<script> alert ('NÃO EXISTEM VEICULOS CADASTRADOS!');</script>";
+            
+        // echo "<script> window.location.href='$url_admin/';</script>";
+        
+    }
+
+    
+?>
+<?php echo $dados_veiculos['placa'];?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -7,16 +27,16 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Locte - Gerenciamento de locação</title>
-    <link rel="stylesheet" href="../Style/normalize.css">
-    <link rel="stylesheet" href="../Style/main.css">
-    <link rel="stylesheet" href="../Style/vehicles.css">
+    <link rel="stylesheet" href="../public/Style/normalize.css">
+    <link rel="stylesheet" href="../public/style/main.css">
+    <link rel="stylesheet" href="../public/style/vehicles.css">
 </head>
 <body>
     <header class="header1">
         <h1 class="h1Logo"><a href="/locte/admin">Locte</a></h1>
         <h1 id="relogio"></h1>
         <nav class="header-nav">
-            <a href="reservation.html"><button class="btn-nova-reserva">Nova reserva</button></a>
+            <a href="reservation.php"><button class="btn-nova-reserva">Nova reserva</button></a>
             <div id="div-menu-hamburguer">
                 <img src="/Img/hambuguer-menu-removebg-preview.png" alt="Menu lateral" class="menuIcon">
             </div>
@@ -25,46 +45,23 @@
     <main>
         <h1 class="page-title">Veículos</h1>
         <div class="div-content">
+        <?php do{
+		?>
+				
+        
             <a href="vehicle.html">
                 <div class="vehicle-card">
-                    <img src="https://cdn.appdealersites.com.br/saga/blog/1.png" alt="Fiat Mobi">
+                    <img src="data:image/png;base64,<?php echo base64_encode($dados_veiculos['codigo_imagem']);?>" alt="<?php echo $dados_veiculos['marca'];?>&nbsp<?php echo $dados_veiculos['modelo'];?>">
                     <div class="description">
-                        <h1>Fiat Mobi</h1>
+                        <h1><?php echo $dados_veiculos['marca'];?>&nbsp<?php echo $dados_veiculos['modelo'];?></h1>
                         <h2>Diária <span>R$300</span></h2>
                         <h3>X disponíveis</h3>
                     </div>
                 </div>
             </a>
-            <a href="vehicle.html">
-                <div class="vehicle-card">
-                    <img src="https://r-media.volkswagen.com/v2/VW/5U0-2023-MULTI/5U0-2023-MP1/20221225/pt-BR-br/D8D8/15/0A2,0FR,0KA,0P0,0RZ,0Y2,1AC,1BA,1KB,1LR,1MM,1N4,1NC,2C0,2JI,2V1,2Y0,3B5,3C7,3D2,3FA,3H0,3L1,3LA,3MH,3N0,3NB,3Q6,3QT,3RM,3U1,3ZM,4F1,4GF,4KC,4L2,4N3,4R2,4SA,4TB,4U0,4UE,5A2,5J0,5N0,5RQ,5SJ,6A0,6F0,6FA,6KD,6M0,6Q1,6SF,6XB,7AA,7B3,7E0,7JX,7PA,7Q0,7X0,8EP,8F0,8M1,8N1,8P1,8R1,8RR,8S0,8SA,8T0,8TA,8UB,8WA,8ZG,9AB,9E0,9MF,9P1,9PE,9Q0,9T0,9W0,A8B,AZ0,B41,C0D,E0A,F0A,G0C,GP3,ID0,K8G,KA0,L0L,N2H,Q1A,Q98,QD1,QE1,TJ9,UG0,UI4,VF0,VH0/D6MOFA34FrontPC/b19d7b4a-df80-487c-908a-47785dbb35fc/00e1048d1a1ecd90e8d63d9e05e2a65456ceff137c453a98a4390d2f400f6a12.png?width=864" alt="">
-                    <div class="description">
-                        <h1>Volkswagen Gol</h1>
-                        <h2>Diária <span>R$250</span></h2>
-                        <h3>X disponíveis</h3>
-                    </div>
-                </div>
-            </a>
-            <a href="vehicle.html">
-                <div class="vehicle-card">
-                    <img src="https://www.chevrolet.com.br/content/dam/chevrolet/mercosur/brazil/portuguese/index/fleet/pessoas-com-deficiencia/16-images/novo-tracker-pcd-vermelho-chili.png?imwidth=960" alt="">
-                    <div class="description">
-                        <h1>Chevrolet Tracker</h1>
-                        <h2>Diária <span>R$600</span></h2>
-                        <h3>X disponíveis</h3>
-                    </div>
-                </div>
-            </a>
-            <a href="vehicle.html">
-                <div class="vehicle-card">
-                    <img src="https://s2.glbimg.com/G5ckabuI3lCoRLNEn5WkTupm_Vc=/0x0:2560x1810/984x0/smart/filters:strip_icc()/i.s3.glbimg.com/v1/AUTH_59edd422c0c84a879bd37670ae4f538a/internal_photos/bs/2017/8/e/Eakc5ASS2FRD6k6LVo7Q/kwid-life-1.png" alt="">
-                    <div class="description">
-                        <h1>Renault Kwid</h1>
-                        <h2>Diária <span>R$250</span></h2>
-                        <h3>X disponíveis</h3>
-                    </div>
-                </div>
-            </a>
+        
+						
+		<?php }while ($dados_veiculos = mysqli_fetch_assoc($select_veiculos));?>
         </div>
     </main>
     <aside class="menuLateral hidden" id="asideMenu">
@@ -74,16 +71,16 @@
                 Gerenciar
             </li>
             <li>
-                <a href="vehicles.html">Veículos</a>
+                <a href="vehicles.php">Veículos</a>
             </li>
             <li>
-                <a href="reservations.html">Reservas</a>
+                <a href="reservations.php">Reservas</a>
             </li>
             <li>
-                <a href="devolutions.html">Devoluções</a>
+                <a href="devolutions.php">Devoluções</a>
             </li>
             <li>
-                <a href="users.html">Usuários</a>
+                <a href="users.php">Usuários</a>
             </li>
             <li>
                 <form action="../src/logoff.php">
@@ -92,7 +89,7 @@
             </li>
         </ul>
     </aside>
-    <script src="../Scripts/clock.js"></script>
-    <script src="../Scripts/asideMenu.js"></script>
+    <script src="../public/Scripts/clock.js"></script>
+    <script src="../public/Scripts/asideMenu.js"></script>
 </body>
 </html>

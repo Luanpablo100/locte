@@ -6,11 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login - Locte</title>
     <!-- <link rel="stylesheet" href="../Style/normalize.css"> -->
-    <link rel="stylesheet" href="./Style/login.css">
+    <link rel="stylesheet" href="./public/style/login.css">
 </head>
 <body>
     <div class="container">
-        <!-- code here -->
         <div class="card">
             <div class="card-image">	
                 <h2 class="card-heading">

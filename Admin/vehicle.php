@@ -16,7 +16,7 @@
         <h1 class="h1Logo"><a href="/locte/admin">Locte</a></h1>
         <h1 id="relogio"></h1>
         <nav class="header-nav">
-            <a href="reservation.html"><button class="btn-nova-reserva">Nova reserva</button></a>
+            <a href="reservation.php"><button class="btn-nova-reserva">Nova reserva</button></a>
             <div id="div-menu-hamburguer">
                 <img src="/Img/hambuguer-menu-removebg-preview.png" alt="Menu lateral" class="menuIcon">
             </div>
@@ -27,7 +27,7 @@
         <div class="div-content">
             <div class="vehicle-card">
                 <img src="https://cdn.appdealersites.com.br/saga/blog/1.png" alt="Fiat Mobi">
-                <form action="reservation.html">
+                <form action="reservation.php">
                     <div class="input-group">
                         <div class="input">
                             <input type="number" class="input-field" required value="250"/>
@@ -80,16 +80,16 @@
                 Gerenciar
             </li>
             <li>
-                <a href="vehicles.html">Veículos</a>
+                <a href="vehicles.php">Veículos</a>
             </li>
             <li>
-                <a href="reservations.html">Reservas</a>
+                <a href="reservations.php">Reservas</a>
             </li>
             <li>
-                <a href="./devolutions.html">Devoluções</a>
+                <a href="devolutions.php">Devoluções</a>
             </li>
             <li>
-                <a href="users.html">Usuários</a>
+                <a href="users.php">Usuários</a>
             </li>
             <li>
                 <form action="../src/logoff.php">
@@ -98,7 +98,7 @@
             </li>
         </ul>
     </aside>
-    <script src="../Scripts/clock.js"></script>
-    <script src="../Scripts/asideMenu.js"></script>
+    <script src="../public/Scripts/clock.js"></script>
+    <script src="../public/Scripts/asideMenu.js"></script>
 </body>
 </html>
