@@ -1,8 +1,12 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+/* @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap'); */
 @import 'normalize.css';
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
 
 body {
-    font-family: 'Inter';
+    font-family: 'Nanum Gothic', sans-serif;
+    /* font-family: 'Inter'; */
     font-style: normal;
     color: white;
     background-color: #f1f3fb;
@@ -17,7 +21,8 @@ main {
 .header1 {
     width: 100vw;
     height: 90px;
-    background: #001F36;
+    /* background: #001F36; */
+    background: #1c2029;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -34,6 +39,7 @@ main {
 .page-title {
     margin-left: 15px;
     color: black;
+    text-align: center;
 }
 
 .menuIcon {
@@ -55,7 +61,7 @@ main {
     width: 180px;
     height: 55px;
     border: none;
-    background: #32BEA6;
+    background: #27b879;
     border-radius: 10px;
     cursor: pointer;
     color: white;
@@ -69,10 +75,6 @@ main {
 .header-nav {
     display: flex;
     align-items: center;
-}
-
-.div-content {
-/**/
 }
 
 .tabela-dados {
@@ -96,7 +98,7 @@ main {
     position: absolute;
     right: 0;
     top: 0;
-    background-color: #001F36;
+    background-color: #1c2029;
     display: flex;
     flex-direction: column;
     height: 100vh;
@@ -143,4 +145,12 @@ main {
     width: 100%;
     display: flex;
     justify-content: space-evenly;
+}
+
+.sem-dados-texto {
+    color: black;
+}
+
+.img-list {
+    width: 150px;
 }

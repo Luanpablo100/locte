@@ -1,22 +1,4 @@
-<?php require('./src/valida_admin.php');
-
-require('../src/conexao.php');
-
-//Script que faz o select das informações de reserva, incluindo o nome do cliente e modelo e marca do veiculo
-$select_reservas = mysqli_query($conexao, "SELECT reserva.*,cliente.nome,veiculo.marca,veiculo.modelo,veiculo.cor,veiculo.placa from reserva JOIN cliente on reserva.idCliente = cliente.id JOIN veiculo ON reserva.idVeiculo = veiculo.id ORDER BY hora_inicio ASC;");
-            
-    if (mysqli_num_rows($select_reservas) > 0) {
-        
-        $dados_reserva = mysqli_fetch_assoc($select_reservas);
-        
-    } else {
-        
-        echo "<script> alert ('NÃO EXISTEM RESERVAS CADASTRADOS!');</script>";
-            
-        // echo "<script> window.location.href='$url_admin/';</script>";
-        
-    }
-?>
+<?php require('./src/valida_admin.php');?>
 
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -27,49 +9,68 @@ $select_reservas = mysqli_query($conexao, "SELECT reserva.*,cliente.nome,veiculo
     <title>Locte - Gerenciamento de locação</title>
     <link rel="stylesheet" href="../public/Style/normalize.css">
     <link rel="stylesheet" href="../public/Style/main.css">
+    <link rel="stylesheet" href="../public/Style/vehicle.css">
 </head>
 <body>
     <header class="header1">
-        <a href="/locte/admin"><h1 class="h1Logo">Locte</h1></a>
+        <h1 class="h1Logo"><a href="/locte/admin">Locte</a></h1>
         <h1 id="relogio"></h1>
         <nav class="header-nav">
-            <a href="edit-reservation.php"><button class="btn-nova-reserva">Nova reserva</button></a>
+            <a href="reservation.php"><button class="btn-nova-reserva">Nova reserva</button></a>
             <div id="div-menu-hamburguer">
                 <img src="../public/Img/hambuguer-menu-removebg-preview.png" alt="Menu lateral" class="menuIcon">
             </div>
         </nav>
     </header>
     <main>
-        <h1 class="page-title">Próximas reservas</h1>
+        <h1 class="page-title">Editar veículo</h1>
         <div class="div-content">
-            <table class="tabela-dados">
-            <tr>
-                  <th>Cliente</th>
-                  <th>Veículo</th>
-                  <th>Cor</th>
-                  <th>Placa</th>
-                  <th>Horário</th>
-                  <th>Data</th>
-                  <th>Ação</th>
-                </tr>
-            <?php do{
-			?>
-					
-					<tr>
-
-						<td><?php echo $dados_reserva['nome'];?></td>
-                        <td><?php echo $dados_reserva['marca'];?>&nbsp<?php echo $dados_reserva['modelo'];?></td>
-                        <td><?php echo $dados_reserva['cor'];?></td>
-                        <td><?php echo $dados_reserva['placa'];?></td>
-                        <td><?php echo $dados_reserva['hora_inicio'];?></td>
-						<td><?php echo $dados_reserva['data_inicio'];?></td>
-                        <td>X Y Z</td>
-						
-					</tr>
-
-				<?php }while ($dados_reserva = mysqli_fetch_assoc($select_reservas));?>
-
-              </table>
+            <div class="vehicle-card">
+                <img src="https://cdn.appdealersites.com.br/saga/blog/1.png" alt="Fiat Mobi">
+                <form action="reservation.php">
+                    <div class="input-group">
+                        <div class="input">
+                            <input type="number" class="input-field" required value="250"/>
+                            <label class="input-label">Valor da diária</label>
+                        </div>
+                        <button class="action-button">Reservar</button>
+                    </div>
+                </form>
+            </div>
+            <form action="vehicles.html" class="vehicle-edit-form">
+                <h1 class="vehicle-name">FIAT MOBI - PUV9244</h1>
+                <div class="input-group">
+                    <div class="input">
+                        <input type="number" class="input-field" required value="8000"/>
+                        <label class="input-label">Quilometragem total</label>
+                    </div>
+                    <div class="input-group-2">
+                        <div class="input">
+                            <input type="number" class="input-field" disabled value="2020"/>
+                            <label class="input-label">Ano</label>
+                        </div>
+                        <div class="input">
+                            <input type="text" class="input-field" required value="Vermelho"/>
+                            <label class="input-label">Cor</label>
+                        </div>
+                    </div>
+                    <div class="input-group-2">
+                        <div class="input">
+                            <input type="text" class="input-field" required value="Alcool/Gasolina"/>
+                            <label class="input-label">Combustível</label>
+                        </div>
+                        <div class="input">
+                            <input type="number" class="input-field" disabled value="5"/>
+                            <label class="input-label">Quantidade max. passageiros</label>
+                        </div>
+                    </div>
+                    <div class="input">
+                        <input type="text" class="input-field" required value="Disponível"/>
+                        <label class="input-label">Situação do veículo</label>
+                    </div>
+                    <button class="action-button">Atualizar</button>
+                </div>
+            </form>
         </div>
     </main>
     <aside class="menuLateral hidden" id="asideMenu">
@@ -79,16 +80,16 @@ $select_reservas = mysqli_query($conexao, "SELECT reserva.*,cliente.nome,veiculo
                 Gerenciar
             </li>
             <li>
-                <a href="./catalog.php">Veículos</a>
+                <a href="catalog.php">Veículos</a>
             </li>
             <li>
-                <a href="./reservations.php">Reservas</a>
+                <a href="reservations.php">Reservas</a>
             </li>
             <li>
-                <a href="./locations.php">Locações</a>
+                <a href="locations.php">Locações</a>
             </li>
             <li>
-                <a href="./users.php">Usuários</a>
+                <a href="users.php">Usuários</a>
             </li>
             <li>
                 <form action="../src/logoff.php">

@@ -18,7 +18,7 @@
         <nav class="header-nav">
             <a href="reservation.php"><button class="btn-nova-reserva">Nova reserva</button></a>
             <div id="div-menu-hamburguer">
-                <img src="/Img/hambuguer-menu-removebg-preview.png" alt="Menu lateral" class="menuIcon">
+                <img src="../public/Img/hambuguer-menu-removebg-preview.png" alt="Menu lateral" class="menuIcon">
             </div>
         </nav>
     </header>
@@ -148,13 +148,13 @@
                 Gerenciar
             </li>
             <li>
-                <a href="vehicles.php">Veículos</a>
+                <a href="catalog.php">Veículos</a>
             </li>
             <li>
                 <a href="reservations.php">Reservas</a>
             </li>
             <li>
-                <a href="./devolutions.php">Reservas</a>
+                <a href="./locations.php">Reservas</a>
             </li>
             <li>
                 <a href="users.php">Usuários</a>

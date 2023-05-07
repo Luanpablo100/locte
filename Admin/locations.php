@@ -3,11 +3,11 @@
 require('../src/conexao.php');
 
 //Script que faz o select das informações de reserva, incluindo o nome do cliente e modelo e marca do veiculo
-$select_reservas = mysqli_query($conexao, "SELECT reserva.*,cliente.nome,veiculo.marca,veiculo.modelo,veiculo.cor,veiculo.placa from reserva JOIN cliente on reserva.idCliente = cliente.id JOIN veiculo ON reserva.idVeiculo = veiculo.id ORDER BY hora_inicio ASC;");
+$select_locacoes = mysqli_query($conexao, "SELECT locacao.*,cliente.nome,veiculo.marca,veiculo.modelo,veiculo.cor,veiculo.placa from locacao JOIN cliente on locacao.idCliente = cliente.id JOIN veiculo ON locacao.idVeiculo = veiculo.id ORDER BY data_termino ASC;");
             
-    if (mysqli_num_rows($select_reservas) > 0) {
+    if (mysqli_num_rows($select_locacoes) > 0) {
         
-        $dados_reserva = mysqli_fetch_assoc($select_reservas);
+        $dados_locacao = mysqli_fetch_assoc($select_locacoes);
         
     } else {
         
@@ -33,42 +33,49 @@ $select_reservas = mysqli_query($conexao, "SELECT reserva.*,cliente.nome,veiculo
         <a href="/locte/admin"><h1 class="h1Logo">Locte</h1></a>
         <h1 id="relogio"></h1>
         <nav class="header-nav">
-            <a href="edit-reservation.php"><button class="btn-nova-reserva">Nova reserva</button></a>
+            <a href="reservation.php"><button class="btn-nova-reserva">Nova reserva</button></a>
             <div id="div-menu-hamburguer">
                 <img src="../public/Img/hambuguer-menu-removebg-preview.png" alt="Menu lateral" class="menuIcon">
             </div>
         </nav>
     </header>
     <main>
-        <h1 class="page-title">Próximas reservas</h1>
+        <h1 class="page-title">Locações</h1>
         <div class="div-content">
-            <table class="tabela-dados">
-            <tr>
-                  <th>Cliente</th>
-                  <th>Veículo</th>
-                  <th>Cor</th>
-                  <th>Placa</th>
-                  <th>Horário</th>
-                  <th>Data</th>
-                  <th>Ação</th>
-                </tr>
-            <?php do{
-			?>
+
+                <?php 
+
+                if (mysqli_num_rows($select_locacoes) <= 0) {
+                    echo "<h1 class='sem-dados-texto'>Não há locações!<h1>";
+                } else {
+                    echo "            
+                    <table class='tabela-dados'>
+                    <tr>
+                      <th>Cliente</th>
+                      <th>Veículo</th>
+                      <th>Cor</th>
+                      <th>Placa</th>
+                      <th>Data início</th>
+                      <th>Data devolução</th>
+                      <th>Horário</th>
+                      <th>Ação</th>
+                    </tr>
+                    ";
+                    do {
+			    ?>
 					
 					<tr>
-
-						<td><?php echo $dados_reserva['nome'];?></td>
-                        <td><?php echo $dados_reserva['marca'];?>&nbsp<?php echo $dados_reserva['modelo'];?></td>
-                        <td><?php echo $dados_reserva['cor'];?></td>
-                        <td><?php echo $dados_reserva['placa'];?></td>
-                        <td><?php echo $dados_reserva['hora_inicio'];?></td>
-						<td><?php echo $dados_reserva['data_inicio'];?></td>
+						<td><?php echo $dados_locacao['nome'];?></td>
+                        <td><?php echo $dados_locacao['marca'];?>&nbsp<?php echo $dados_locacao['modelo'];?></td>
+                        <td><?php echo $dados_locacao['cor'];?></td>
+                        <td><?php echo $dados_locacao['placa'];?></td>
+						<td><?php $hoje = date("Y-m-d"); if ($dados_locacao["data_inicio"] == $hoje) {echo "Hoje";} else {echo $dados_locacao['data_inicio'];}?></td>
+						<td><?php $hoje = date("Y-m-d"); if ($dados_locacao["data_termino"] == $hoje) {echo "Hoje";} else {echo $dados_locacao['data_termino'];}?></td>
+                        <td><?php echo $dados_locacao['hora_inicio'];?></td>
                         <td>X Y Z</td>
-						
 					</tr>
 
-				<?php }while ($dados_reserva = mysqli_fetch_assoc($select_reservas));?>
-
+				<?php } while ($dados_locacao = mysqli_fetch_assoc($select_locacoes));}?>                                   
               </table>
         </div>
     </main>
@@ -91,7 +98,7 @@ $select_reservas = mysqli_query($conexao, "SELECT reserva.*,cliente.nome,veiculo
                 <a href="./users.php">Usuários</a>
             </li>
             <li>
-                <form action="../src/logoff.php">
+            <form action="../src/logoff.php">
                     <button>Logoff</button>
                 </form>
             </li>

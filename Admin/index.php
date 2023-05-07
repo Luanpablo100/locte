@@ -1,4 +1,23 @@
-<?php require('./src/valida_admin.php');?>
+<?php require('./src/valida_admin.php');
+
+require('../src/conexao.php');
+
+//Script que faz o select das informações de reserva, incluindo o nome do cliente e modelo e marca do veiculo
+$select_reservas = mysqli_query($conexao, "SELECT reserva.*,cliente.nome,veiculo.marca,veiculo.modelo,veiculo.cor,veiculo.placa from reserva JOIN cliente on reserva.idCliente = cliente.id JOIN veiculo ON reserva.idVeiculo = veiculo.id WHERE data_inicio = CURDATE() ORDER BY hora_inicio ASC;");
+$select_locacoes = mysqli_query($conexao, "SELECT locacao.*,cliente.nome,veiculo.marca,veiculo.modelo,veiculo.cor,veiculo.placa from locacao JOIN cliente on locacao.idCliente = cliente.id JOIN veiculo ON locacao.idVeiculo = veiculo.id ORDER BY data_termino ASC;");
+        
+if (mysqli_num_rows($select_locacoes) > 0) {
+        
+    $dados_locacao = mysqli_fetch_assoc($select_locacoes);
+    
+} else {
+    
+    echo "<script> alert ('NÃO EXISTEM RESERVAS CADASTRADOS!');</script>";
+        
+    // echo "<script> window.location.href='$url_admin/';</script>";
+    
+}
+?>
 
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -17,38 +36,81 @@
         <nav class="header-nav">
             <a href="reservation.php"><button class="btn-nova-reserva">Nova reserva</button></a>
             <div id="div-menu-hamburguer">
-                <img src="/Img/hambuguer-menu-removebg-preview.png" alt="Menu lateral" class="menuIcon">
+                <img src="../public/Img/hambuguer-menu-removebg-preview.png" alt="Menu lateral" class="menuIcon">
             </div>
         </nav>
     </header>
     <main>
         <h1 class="page-title">Próximas reservas</h1>
         <div class="div-content">
-            <table class="tabela-dados">
-                <tr>
-                  <th>Nome</th>
-                  <th>Veículo</th>
-                  <th>Cor</th>
-                  <th>Placa</th>
-                  <th>Horário</th>
-                  <th>Ação</th>
-                </tr>
-                <tr>
-                  <td>Carlos Batista</td>
-                  <td>Wolksvagem Gol</td>
-                  <td>Vermelho</td>
-                  <td>PUV-9244</td>
-                  <td>15:30</td>
-                  <td><div class="actions-div" ><img src="Img/correct.png" alt="" class="action-button" onclick="alert('Confirmar a reserva?')"><a href="edit-reservation.php"><img src="Img/editar.png" alt="" class="action-button"></a><img src="Img/erro.png" alt="" class="action-button" onclick="alert('Cancelar a reserva?')"></div></td>
-                </tr>
-                <tr>
-                  <td>Manoela Silva</td>
-                  <td>Fiat Mobi</td>
-                  <td>Preto</td>
-                  <td>JXP-5941</td>
-                  <td>16:00</td>
-                  <td><div class="actions-div" ><img src="Img/correct.png" alt="" class="action-button" onclick="alert('Confirmar a reserva?')"><a href="edit-reservation.php"><img src="Img/editar.png" alt="" class="action-button"></a><img src="Img/erro.png" alt="" class="action-button" onclick="alert('Cancelar a reserva?')"></div></td>
-                </tr>                                         
+
+                <?php 
+
+                if (mysqli_num_rows($select_reservas) <= 0) {
+                    echo "<h2 class='sem-dados-texto'>Não há reservas para hoje!<h2>";
+                } else {
+                    echo "            
+                    <table class='tabela-dados'>
+                    <tr>
+                      <th>Nome</th>
+                      <th>Veículo</th>
+                      <th>Cor</th>
+                      <th>Placa</th>
+                      <th>Horário</th>
+                      <th>Ação</th>
+                    </tr>
+                    ";
+                    do {
+			    ?>
+					
+					<tr>
+						<td><?php echo $dados_reserva['nome'];?></td>
+                        <td><?php echo $dados_reserva['marca'];?>&nbsp<?php echo $dados_reserva['modelo'];?></td>
+                        <td><?php echo $dados_reserva['cor'];?></td>
+                        <td><?php echo $dados_reserva['placa'];?></td>
+                        <td><?php echo $dados_reserva['hora_inicio'];?></td>
+						<td><?php echo $dados_reserva['data_inicio'];?></td>
+                        <td>X Y Z</td>
+					</tr>
+
+				<?php } while ($dados_reserva = mysqli_fetch_assoc($select_reservas));}?>                                   
+              </table>
+
+
+              <h1 class="page-title">Próximas devoluções</h1>
+              <?php 
+
+                if (mysqli_num_rows($select_locacoes) <= 0) {
+                    echo "<h2 class='sem-dados-texto'>Não há locações!<h2>";
+                } else {
+                    echo "            
+                    <table class='tabela-dados'>
+                    <tr>
+                      <th>Cliente</th>
+                      <th>Veículo</th>
+                      <th>Cor</th>
+                      <th>Placa</th>
+                      <th>Data início</th>
+                      <th>Data devolução</th>
+                      <th>Horário</th>
+                      <th>Ação</th>
+                    </tr>
+                    ";
+                    do {
+			    ?>
+					
+					<tr>
+						<td><?php echo $dados_locacao['nome'];?></td>
+                        <td><?php echo $dados_locacao['marca'];?>&nbsp<?php echo $dados_locacao['modelo'];?></td>
+                        <td><?php echo $dados_locacao['cor'];?></td>
+                        <td><?php echo $dados_locacao['placa'];?></td>
+						<td><?php $hoje = date("Y-m-d"); if ($dados_locacao["data_inicio"] == $hoje) {echo "Hoje";} else {echo $dados_locacao['data_inicio'];}?></td>
+						<td><?php $hoje = date("Y-m-d"); if ($dados_locacao["data_termino"] == $hoje) {echo "Hoje";} else {echo $dados_locacao['data_termino'];}?></td>
+                        <td><?php echo $dados_locacao['hora_inicio'];?></td>
+                        <td>X Y Z</td>
+					</tr>
+
+				<?php } while ($dados_locacao = mysqli_fetch_assoc($select_locacoes));}?>                                   
               </table>
         </div>
     </main>
@@ -59,13 +121,13 @@
                 Gerenciar
             </li>
             <li>
-                <a href="./vehicles.php">Veículos</a>
+                <a href="./catalog.php">Veículos</a>
             </li>
             <li>
                 <a href="./reservations.php">Reservas</a>
             </li>
             <li>
-                <a href="./devolutions.php">Devoluções</a>
+                <a href="./locations.php">Locações</a>
             </li>
             <li>
                 <a href="./users.php">Usuários</a>

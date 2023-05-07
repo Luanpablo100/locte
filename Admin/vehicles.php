@@ -2,8 +2,10 @@
 
 require('../src/conexao.php');
 
-//Script que faz o select das informações de reserva, incluindo o nome do cliente e modelo e marca do veiculo
-$select_veiculos = mysqli_query($conexao, "SELECT * from veiculo ORDER BY marca ASC;");
+$marca_veiculo = $_GET['brand'];
+$modelo_veiculo = $_GET['model'];
+
+$select_veiculos = mysqli_query($conexao, "SELECT * FROM veiculo WHERE marca ='$marca_veiculo' AND modelo = '$modelo_veiculo' ORDER BY ano DESC;");
             
     if (mysqli_num_rows($select_veiculos) > 0) {
         
@@ -11,15 +13,12 @@ $select_veiculos = mysqli_query($conexao, "SELECT * from veiculo ORDER BY marca 
         
     } else {
         
-        echo "<script> alert ('NÃO EXISTEM VEICULOS CADASTRADOS!');</script>";
+        echo "<script> alert ('ERRO! NAO FORAM RETORNADOS DADOS!');</script>";
             
         // echo "<script> window.location.href='$url_admin/';</script>";
-        
     }
-
-    
 ?>
-<?php echo $dados_veiculos['placa'];?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -28,40 +27,61 @@ $select_veiculos = mysqli_query($conexao, "SELECT * from veiculo ORDER BY marca 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Locte - Gerenciamento de locação</title>
     <link rel="stylesheet" href="../public/Style/normalize.css">
-    <link rel="stylesheet" href="../public/style/main.css">
-    <link rel="stylesheet" href="../public/style/vehicles.css">
+    <link rel="stylesheet" href="../public/Style/main.css">
 </head>
 <body>
     <header class="header1">
-        <h1 class="h1Logo"><a href="/locte/admin">Locte</a></h1>
+        <a href="/locte/admin"><h1 class="h1Logo">Locte</h1></a>
         <h1 id="relogio"></h1>
         <nav class="header-nav">
             <a href="reservation.php"><button class="btn-nova-reserva">Nova reserva</button></a>
             <div id="div-menu-hamburguer">
-                <img src="/Img/hambuguer-menu-removebg-preview.png" alt="Menu lateral" class="menuIcon">
+                <img src="../public/Img/hambuguer-menu-removebg-preview.png" alt="Menu lateral" class="menuIcon">
             </div>
         </nav>
     </header>
     <main>
-        <h1 class="page-title">Veículos</h1>
+        <h1 class="page-title"><?php echo $marca_veiculo;?>&nbsp<?php echo $modelo_veiculo;?></h1>
         <div class="div-content">
-        <?php do{
-		?>
-				
-        
-            <a href="vehicle.html">
-                <div class="vehicle-card">
-                    <img src="data:image/png;base64,<?php echo base64_encode($dados_veiculos['codigo_imagem']);?>" alt="<?php echo $dados_veiculos['marca'];?>&nbsp<?php echo $dados_veiculos['modelo'];?>">
-                    <div class="description">
-                        <h1><?php echo $dados_veiculos['marca'];?>&nbsp<?php echo $dados_veiculos['modelo'];?></h1>
-                        <h2>Diária <span>R$300</span></h2>
-                        <h3>X disponíveis</h3>
-                    </div>
-                </div>
-            </a>
-        
-						
-		<?php }while ($dados_veiculos = mysqli_fetch_assoc($select_veiculos));?>
+
+                <?php 
+
+                if (mysqli_num_rows($select_veiculos) <= 0) {
+                    echo "<h1 class='sem-dados-texto'>Não há locações!<h1>";
+                } else {
+                    echo "            
+                    <table class='tabela-dados'>
+                    <tr>
+                        <th>Foto</th>
+                        <th>Placa</th>
+                        <th>Ano</th>
+                        <th>Cor</th>
+                        <th>Quilometragem</th>
+                        <th>Status</th>
+                        <th>Ação</th>
+                    </tr>
+                    ";
+                    do {
+			    ?>
+					
+					<tr>
+                        <td>
+                            <img src="data:image/png;base64,
+                                <?php echo base64_encode($dados_veiculos['codigo_imagem']);
+                                ?>"
+                                class="img-list"
+                            />
+                        </td>
+						<td><?php echo $dados_veiculos['placa'];?></td>
+                        <td><?php echo $dados_veiculos['ano'];?></td>
+                        <td><?php echo $dados_veiculos['cor'];?></td>
+                        <td><?php echo $dados_veiculos['quilometragem'];?> KM</td>
+						<td><?php if($dados_veiculos['disponivel'] == 1) {echo "Disponível";} else {echo "Locado";}?></td>
+                        <td>X Y Z</td>
+					</tr>
+
+				<?php } while ($dados_veiculos = mysqli_fetch_assoc($select_veiculos));}?>                                   
+              </table>
         </div>
     </main>
     <aside class="menuLateral hidden" id="asideMenu">
@@ -71,19 +91,19 @@ $select_veiculos = mysqli_query($conexao, "SELECT * from veiculo ORDER BY marca 
                 Gerenciar
             </li>
             <li>
-                <a href="vehicles.php">Veículos</a>
+                <a href="./catalog.php">Veículos</a>
             </li>
             <li>
-                <a href="reservations.php">Reservas</a>
+                <a href="./reservations.php">Reservas</a>
             </li>
             <li>
-                <a href="devolutions.php">Devoluções</a>
+                <a href="./locations.php">Locações</a>
             </li>
             <li>
-                <a href="users.php">Usuários</a>
+                <a href="./users.php">Usuários</a>
             </li>
             <li>
-                <form action="../src/logoff.php">
+            <form action="../src/logoff.php">
                     <button>Logoff</button>
                 </form>
             </li>

@@ -1,4 +1,22 @@
-<?php require('./src/valida_admin.php');?>
+<?php require('./src/valida_admin.php');
+
+require('../src/conexao.php');
+
+//Script que faz o select das informações de reserva, incluindo o nome do cliente e modelo e marca do veiculo
+$select_usuarios = mysqli_query($conexao, "SELECT * from conta ORDER BY usuario ASC;");
+            
+    if (mysqli_num_rows($select_usuarios) > 0) {
+        
+        $dados_usuarios = mysqli_fetch_assoc($select_usuarios);
+        
+    } else {
+        
+        echo "<script> alert ('NÃO EXISTEM RESERVAS CADASTRADOS!');</script>";
+            
+        // echo "<script> window.location.href='$url_admin/';</script>";
+        
+    }
+?>
 
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -8,7 +26,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Locte - Gerenciamento de locação</title>
     <link rel="stylesheet" href="../public/Style/normalize.css">
-    <link rel="stylesheet" href="../Style/main.css">
+    <link rel="stylesheet" href="../public/Style/main.css">
 </head>
 <body>
     <header class="header1">
@@ -17,7 +35,7 @@
         <nav class="header-nav">
             <a href="reservation.php"><button class="btn-nova-reserva">Nova reserva</button></a>
             <div id="div-menu-hamburguer">
-                <img src="/Img/hambuguer-menu-removebg-preview.png" alt="Menu lateral" class="menuIcon">
+                <img src="../public/Img/hambuguer-menu-removebg-preview.png" alt="Menu lateral" class="menuIcon">
             </div>
         </nav>
     </header>
@@ -31,12 +49,18 @@
                   <th>Perfil</th>
                   <th>Ação</th>
                 </tr>
-                <tr>
-                  <td>Luan Oliveira</td>
+
+                <?php do{
+		?>
+            <tr>
+                  <td><?php echo $dados_usuarios['usuario'];?></td>
                   <td>Gerente</td>
-                  <td>Administrador</td>
-                  <td><div class="actions-div" ><img src="Img/chave.png" alt="" class="action-button" onclick="alert('Resetar a senha')"><img src="Img/editar.png" alt="" class="action-button"><img src="Img/lixeira.png" alt="" class="action-button" onclick="alert('Apagar o usuário?')"></div></td>
-                </tr>                                      
+                  <td><?php echo $dados_usuarios['perfil'];?></td>
+                  <td><div class="actions-div" ><img src="../public/Img/chave.png" alt="" class="action-button" onclick="alert('Resetar a senha')"><img src="../public/Img/editar.png" alt="" class="action-button"><img src="../public/Img/lixeira.png" alt="" class="action-button" onclick="alert('Apagar o usuário?')"></div></td>
+            </tr>    
+        		
+		<?php }while ($dados_usuarios = mysqli_fetch_assoc($select_usuarios));?>
+                                      
               </table>
         </div>
     </main>
@@ -47,13 +71,13 @@
                 Gerenciar
             </li>
             <li>
-                <a href="./vehicles.php">Veículos</a>
+                <a href="./catalog.php">Veículos</a>
             </li>
             <li>
                 <a href="./reservations.php">Reservas</a>
             </li>
             <li>
-                <a href="./devolutions.php">Devoluções</a>
+                <a href="./locations.php">Locações</a>
             </li>
             <li>
                 <a href="./users.php">Usuários</a>

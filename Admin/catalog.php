@@ -1,5 +1,20 @@
-<?php require('./src/valida_admin.php');?>
+<?php require('./src/valida_admin.php');
 
+require('../src/conexao.php');
+
+$select_veiculos = mysqli_query($conexao, "SELECT marca, modelo, MAX(codigo_imagem) AS imagem, COUNT(*) AS total, MIN(valor) AS valor FROM veiculo WHERE disponivel = 1 GROUP BY marca, modelo ORDER BY marca, modelo;");
+
+    if (mysqli_num_rows($select_veiculos) > 0) {
+        
+        $dados_veiculos = mysqli_fetch_assoc($select_veiculos);
+        
+    } else {
+        
+        echo "<script> alert ('NÃO EXISTEM VEICULOS CADASTRADOS!');</script>";
+   
+    }
+
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -7,9 +22,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Locte - Gerenciamento de locação</title>
-    <link rel="stylesheet" href="../Style/normalize.css">
-    <link rel="stylesheet" href="../Style/main.css">
-    <link rel="stylesheet" href="../Style/vehicle.css">
+    <link rel="stylesheet" href="../public/Style/normalize.css">
+    <link rel="stylesheet" href="../public/style/main.css">
+    <link rel="stylesheet" href="../public/style/vehicles.css">
 </head>
 <body>
     <header class="header1">
@@ -18,59 +33,48 @@
         <nav class="header-nav">
             <a href="reservation.php"><button class="btn-nova-reserva">Nova reserva</button></a>
             <div id="div-menu-hamburguer">
-                <img src="/Img/hambuguer-menu-removebg-preview.png" alt="Menu lateral" class="menuIcon">
+                <img src="../public/Img/hambuguer-menu-removebg-preview.png" alt="Menu lateral" class="menuIcon">
             </div>
         </nav>
     </header>
     <main>
-        <h1 class="page-title">Editar veículo</h1>
+        <h1 class="page-title">Veículos</h1>
         <div class="div-content">
-            <div class="vehicle-card">
-                <img src="https://cdn.appdealersites.com.br/saga/blog/1.png" alt="Fiat Mobi">
-                <form action="reservation.php">
-                    <div class="input-group">
-                        <div class="input">
-                            <input type="number" class="input-field" required value="250"/>
-                            <label class="input-label">Valor da diária</label>
-                        </div>
-                        <button class="action-button">Reservar</button>
+        <?php do{
+		?>
+				
+            <a href="vehicles.php?brand=<?php echo $dados_veiculos['marca'];?>&model=<?php echo $dados_veiculos['modelo'];?>">
+                <div class="vehicle-card">
+                    <div class="vehicle-name">
+                        <h2 class="vehicle-name"><?php echo $dados_veiculos['marca'];?>&nbsp<?php echo $dados_veiculos['modelo'];?></h2>
                     </div>
-                </form>
-            </div>
-            <form action="vehicles.html" class="vehicle-edit-form">
-                <h1 class="vehicle-name">FIAT MOBI - PUV9244</h1>
-                <div class="input-group">
-                    <div class="input">
-                        <input type="number" class="input-field" required value="8000"/>
-                        <label class="input-label">Quilometragem total</label>
-                    </div>
-                    <div class="input-group-2">
-                        <div class="input">
-                            <input type="number" class="input-field" disabled value="2020"/>
-                            <label class="input-label">Ano</label>
+                    <img src="data:image/png;base64,<?php echo base64_encode($dados_veiculos['imagem']);?>" alt="<?php echo $dados_veiculos['marca'];?>&nbsp<?php echo $dados_veiculos['modelo'];?>">
+                    <div class="description">
+                        <div>
+                            <h2>Diária <span>R$ <?php echo $dados_veiculos['valor'];?></span></h2>
                         </div>
-                        <div class="input">
-                            <input type="text" class="input-field" required value="Vermelho"/>
-                            <label class="input-label">Cor</label>
+                        <div>
+                            <h3><?php echo $dados_veiculos['total'];?> disponíveis</h3>
                         </div>
                     </div>
-                    <div class="input-group-2">
-                        <div class="input">
-                            <input type="text" class="input-field" required value="Alcool/Gasolina"/>
-                            <label class="input-label">Combustível</label>
-                        </div>
-                        <div class="input">
-                            <input type="number" class="input-field" disabled value="5"/>
-                            <label class="input-label">Quantidade max. passageiros</label>
-                        </div>
-                    </div>
-                    <div class="input">
-                        <input type="text" class="input-field" required value="Disponível"/>
-                        <label class="input-label">Situação do veículo</label>
-                    </div>
-                    <button class="action-button">Atualizar</button>
                 </div>
-            </form>
+            </a>
+        		
+		<?php }while ($dados_veiculos = mysqli_fetch_assoc($select_veiculos));?>
+        
+        <a href="new-vehicle.php">
+                <div class="vehicle-card">
+                    <div class="vehicle-name">
+                        <h2 class="vehicle-name">Novo veículo</h2>
+                    </div>
+                    <img src="../public/img/newcard.png">
+                    <div class="description">
+                        <div>
+                            <h2>Cadastrar</h2>
+                        </div>
+                    </div>
+                </div>
+            </a>
         </div>
     </main>
     <aside class="menuLateral hidden" id="asideMenu">
@@ -80,13 +84,13 @@
                 Gerenciar
             </li>
             <li>
-                <a href="vehicles.php">Veículos</a>
+                <a href="catalog.php">Veículos</a>
             </li>
             <li>
                 <a href="reservations.php">Reservas</a>
             </li>
             <li>
-                <a href="devolutions.php">Devoluções</a>
+                <a href="locations.php">Locações</a>
             </li>
             <li>
                 <a href="users.php">Usuários</a>
