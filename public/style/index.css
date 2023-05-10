@@ -1,0 +1,65 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
+.section-1, .section-2 {
+    height: 100vh;
+}
+
+body {
+    margin: 0;
+    font-family: 'Inter';
+}
+
+.section-1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: url(../img/main-background.jpg) no-repeat right center fixed;
+}
+
+.main-banner {
+    width: 55vw;
+}
+
+.main-banner img {
+    width: 100%;
+}
+
+.form-call-to-location {
+    background-color: rgb(70, 70, 70);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    color: white;
+    width: 30vw;
+    padding: 100px 20px;
+    margin-left: 100px;
+}
+
+.div-call-to-act-btn {
+    width: 100%;
+    display: flex;
+    justify-content: end;
+}
+
+.call-to-act-btn {
+    background-color: #27b879;
+    border: none;
+    width: 200px;
+    height: 80px;
+    color: white;
+    cursor: pointer;
+    font-size: 1.2rem;
+}
+
+.section-2 {
+    background-color: rgb(70, 70, 70);
+    border-top: 5px solid white;
+}
+
+.section-2 footer {
+    background-color: blueviolet;
+    width: 100vw;
+}
+
+
+
