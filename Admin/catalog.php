@@ -24,7 +24,7 @@ $select_veiculos = mysqli_query($conexao, "SELECT marca, modelo, MAX(codigo_imag
     <title>Locte - Gerenciamento de locação</title>
     <link rel="stylesheet" href="../public/Style/normalize.css">
     <link rel="stylesheet" href="../public/style/main.css">
-    <link rel="stylesheet" href="../public/style/vehicles.css">
+    <link rel="stylesheet" href="../public/style/catalog.css">
 </head>
 <body>
     <header class="header1">

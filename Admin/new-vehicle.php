@@ -9,7 +9,7 @@
     <title>Locte - Gerenciamento de locação</title>
     <link rel="stylesheet" href="../public/Style/normalize.css">
     <link rel="stylesheet" href="../public/Style/main.css">
-    <link rel="stylesheet" href="../public/Style/vehicle.css">
+    <link rel="stylesheet" href="../public/Style/new-vehicle.css">
 </head>
 <body>
     <header class="header1">
@@ -23,52 +23,82 @@
         </nav>
     </header>
     <main>
-        <h1 class="page-title">Editar veículo</h1>
+        <h1 class="page-title">Novo veículo</h1>
+        <h1 class="page-title"></h1>
         <div class="div-content">
-            <div class="vehicle-card">
-                <img src="https://cdn.appdealersites.com.br/saga/blog/1.png" alt="Fiat Mobi">
-                <form action="reservation.php">
+            <form class="vehicle-form" action="./src/salvar_veiculo.php" method="POST" enctype="multipart/form-data">
+                <div class="vehicle-card">
+
+                    <img src="../public/img/car-png.webp" alt="Fiat Mobi" id="img-car">
                     <div class="input-group">
+                        <input type="file" accept="image/png" id="input-car-img" name="imagem_veiculo">
                         <div class="input">
-                            <input type="number" class="input-field" required value="250"/>
+                            <input type="number" class="input-field" required value="250" name="valor_veiculo"/>
                             <label class="input-label">Valor da diária</label>
                         </div>
-                        <button class="action-button">Reservar</button>
                     </div>
-                </form>
-            </div>
-            <form action="vehicles.html" class="vehicle-edit-form">
-                <h1 class="vehicle-name">FIAT MOBI - PUV9244</h1>
-                <div class="input-group">
-                    <div class="input">
-                        <input type="number" class="input-field" required value="8000"/>
-                        <label class="input-label">Quilometragem total</label>
-                    </div>
+                </div>
+                <div>
                     <div class="input-group-2">
                         <div class="input">
-                            <input type="number" class="input-field" disabled value="2020"/>
-                            <label class="input-label">Ano</label>
+                            <input type="text" class="input-field" required name="marca_veiculo"/>
+                            <label class="input-label">Marca</label>
                         </div>
                         <div class="input">
-                            <input type="text" class="input-field" required value="Vermelho"/>
-                            <label class="input-label">Cor</label>
+                            <input type="text" class="input-field" required name="modelo_veiculo"/>
+                            <label class="input-label">Modelo</label>
                         </div>
                     </div>
-                    <div class="input-group-2">
+                    
+                    <div class="input-group">
                         <div class="input">
-                            <input type="text" class="input-field" required value="Alcool/Gasolina"/>
-                            <label class="input-label">Combustível</label>
+                            <input type="number" class="input-field" required value="0" name="quilometragem_veiculo"/>
+                            <label class="input-label">Quilometragem total</label>
                         </div>
+                        <div class="radio-group">
+                                    <div>
+                                        <label for="tipo_carro">Carro</label>
+                                        <input type="radio" class="input-radio" required id="tipo_carro" name="tipo_veiculo" value="Carro"/>
+                                    </div>
+                                    <div>
+                                        <label for="tipo_moto">Moto</label>
+                                        <input type="radio" class="input-radio" required id="tipo_moto" name="tipo_veiculo" value="Moto"/>
+                                    </div>
+                                    <div>
+                                        <label for="tipo_onibus">Onibus</label>
+                                        <input type="radio" class="input-radio" required id="tipo_onibus" name="tipo_veiculo" value="Onibus"/>
+                                    </div>
+                                    <div>
+                                        <label for="tipo_caminhao">Caminhao</label>
+                                        <input type="radio" class="input-radio" required id="tipo_caminhao" name="tipo_veiculo" value="Caminhao"/>
+                                    </div>
+                                </div>
                         <div class="input">
-                            <input type="number" class="input-field" disabled value="5"/>
-                            <label class="input-label">Quantidade max. passageiros</label>
+                            <input type="text" class="input-field" required name="placa_veiculo"/>
+                            <label class="input-label">Placa</label>
                         </div>
+                        <div class="input-group-2">
+                            <div class="input">
+                                <input type="number" class="input-field" required name="ano_veiculo"/>
+                                <label class="input-label">Ano</label>
+                            </div>
+                            <div class="input">
+                                <input type="text" class="input-field" required name="cor_veiculo"/>
+                                <label class="input-label">Cor</label>
+                            </div>
+                        </div>
+                        <div class="input-group-2">
+                            <div class="input">
+                                <input type="text" class="input-field" required value="Alcool/Gasolina" name="combustivel_veiculo"/>
+                                <label class="input-label">Combustível</label>
+                            </div>
+                            <div class="input">
+                                <input type="number" class="input-field" required name="passageiros_veiculo"/>
+                                <label class="input-label">Quantidade max. passageiros</label>
+                            </div>
+                        </div>
+                        <button class="action-button">Cadastrar</button>
                     </div>
-                    <div class="input">
-                        <input type="text" class="input-field" required value="Disponível"/>
-                        <label class="input-label">Situação do veículo</label>
-                    </div>
-                    <button class="action-button">Atualizar</button>
                 </div>
             </form>
         </div>
@@ -100,5 +130,6 @@
     </aside>
     <script src="../public/Scripts/clock.js"></script>
     <script src="../public/Scripts/asideMenu.js"></script>
+    <script src="../public/Scripts/attachImgNewCar.js"></script>
 </body>
 </html>

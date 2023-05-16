@@ -25,7 +25,7 @@
 		unset ($_SESSION['url_admin']);
 		unset ($_SESSION['url_cliente']);
 
-		echo "<script> window.location.href='http://localhost/locte/';</script>";				
+		echo "<script> window.location.href='http://localhost/locte/login.php';</script>";				
 
 	} 
 

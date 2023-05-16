@@ -11,11 +11,6 @@ $select_veiculos = mysqli_query($conexao, "SELECT * FROM veiculo WHERE marca ='$
         
         $dados_veiculos = mysqli_fetch_assoc($select_veiculos);
         
-    } else {
-        
-        echo "<script> alert ('ERRO! NAO FORAM RETORNADOS DADOS!');</script>";
-            
-        // echo "<script> window.location.href='$url_admin/';</script>";
     }
 ?>
 
@@ -28,6 +23,7 @@ $select_veiculos = mysqli_query($conexao, "SELECT * FROM veiculo WHERE marca ='$
     <title>Locte - Gerenciamento de locação</title>
     <link rel="stylesheet" href="../public/Style/normalize.css">
     <link rel="stylesheet" href="../public/Style/main.css">
+    <link rel="stylesheet" href="../public/Style/vehicles.css">
 </head>
 <body>
     <header class="header1">
@@ -47,7 +43,7 @@ $select_veiculos = mysqli_query($conexao, "SELECT * FROM veiculo WHERE marca ='$
                 <?php 
 
                 if (mysqli_num_rows($select_veiculos) <= 0) {
-                    echo "<h1 class='sem-dados-texto'>Não há locações!<h1>";
+                    echo "<h1 class='sem-dados-texto'>Não há veiculos do tipo ". $marca_veiculo . " ". $modelo_veiculo. " a serem listados!<h1>";
                 } else {
                     echo "            
                     <table class='tabela-dados'>
@@ -58,27 +54,28 @@ $select_veiculos = mysqli_query($conexao, "SELECT * FROM veiculo WHERE marca ='$
                         <th>Cor</th>
                         <th>Quilometragem</th>
                         <th>Status</th>
+                        <th>Diária</th>
                         <th>Ação</th>
                     </tr>
                     ";
                     do {
 			    ?>
-					
-					<tr>
-                        <td>
-                            <img src="data:image/png;base64,
-                                <?php echo base64_encode($dados_veiculos['codigo_imagem']);
-                                ?>"
-                                class="img-list"
-                            />
-                        </td>
-						<td><?php echo $dados_veiculos['placa'];?></td>
-                        <td><?php echo $dados_veiculos['ano'];?></td>
-                        <td><?php echo $dados_veiculos['cor'];?></td>
-                        <td><?php echo $dados_veiculos['quilometragem'];?> KM</td>
-						<td><?php if($dados_veiculos['disponivel'] == 1) {echo "Disponível";} else {echo "Locado";}?></td>
-                        <td>X Y Z</td>
-					</tr>
+					    <tr>
+                            <td>
+                                <img src="data:image/png;base64,
+                                    <?php echo base64_encode($dados_veiculos['codigo_imagem']);
+                                    ?>"
+                                    class="img-list"
+                                />
+                            </td>
+						    <td><?php echo $dados_veiculos['placa'];?></td>
+                            <td><?php echo $dados_veiculos['ano'];?></td>
+                            <td><?php echo $dados_veiculos['cor'];?></td>
+                            <td><?php echo $dados_veiculos['quilometragem'];?> KM</td>
+						    <td><?php if($dados_veiculos['disponivel'] == 1) {echo "<span class='status-veiculos disponivel'>Disponível<span>";} else {echo "<span class='status-veiculos locado'>Locado<span>";}?></td>
+                            <td>R$ <?php echo $dados_veiculos['valor'];?></td>
+                            <td><a href="edit-vehicle.php?id=<?php echo $dados_veiculos['id'];?>">Editar</a> Locar</td>
+					    </tr>
 
 				<?php } while ($dados_veiculos = mysqli_fetch_assoc($select_veiculos));}?>                                   
               </table>

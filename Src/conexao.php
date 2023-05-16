@@ -17,9 +17,9 @@
 	
 	$host_ip = $_SERVER['HTTP_HOST'];
 	
-	$url = "http://".$host_ip."/locte";
+	$url = "http://".$host_ip."/locte/login.php";
 
-	$url_admin = "http://".$host_ip."/locte/admin/";
+	$url_admin = "http://".$host_ip."/locte/admin";
 
 	$url_cliente = "http://".$host_ip."/locte/costumer/";
 	

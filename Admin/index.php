@@ -4,7 +4,7 @@ require('../src/conexao.php');
 
 //Script que faz o select das informações de reserva, incluindo o nome do cliente e modelo e marca do veiculo
 $select_reservas = mysqli_query($conexao, "SELECT reserva.*,cliente.nome,veiculo.marca,veiculo.modelo,veiculo.cor,veiculo.placa from reserva JOIN cliente on reserva.idCliente = cliente.id JOIN veiculo ON reserva.idVeiculo = veiculo.id WHERE data_inicio = CURDATE() ORDER BY hora_inicio ASC;");
-$select_locacoes = mysqli_query($conexao, "SELECT locacao.*,cliente.nome,veiculo.marca,veiculo.modelo,veiculo.cor,veiculo.placa from locacao JOIN cliente on locacao.idCliente = cliente.id JOIN veiculo ON locacao.idVeiculo = veiculo.id ORDER BY data_termino ASC;");
+$select_locacoes = mysqli_query($conexao, "SELECT locacao.*,cliente.nome,veiculo.marca,veiculo.modelo,veiculo.cor,veiculo.placa from locacao JOIN cliente on locacao.idCliente = cliente.id JOIN veiculo ON locacao.idVeiculo = veiculo.id WHERE data_termino = CURDATE() ORDER BY data_termino ASC;");
         
 if (mysqli_num_rows($select_locacoes) > 0) {
         
@@ -41,7 +41,7 @@ if (mysqli_num_rows($select_locacoes) > 0) {
         </nav>
     </header>
     <main>
-        <h1 class="page-title">Próximas reservas</h1>
+        <h1 class="page-title">Reservas hoje</h1>
         <div class="div-content">
 
                 <?php 
@@ -77,7 +77,7 @@ if (mysqli_num_rows($select_locacoes) > 0) {
               </table>
 
 
-              <h1 class="page-title">Próximas devoluções</h1>
+              <h1 class="page-title">Devoluções hoje</h1>
               <?php 
 
                 if (mysqli_num_rows($select_locacoes) <= 0) {
@@ -90,8 +90,8 @@ if (mysqli_num_rows($select_locacoes) > 0) {
                       <th>Veículo</th>
                       <th>Cor</th>
                       <th>Placa</th>
-                      <th>Data início</th>
-                      <th>Data devolução</th>
+                      <!-- <th>Data início</th> -->
+                      <!-- <th>Data devolução</th> -->
                       <th>Horário</th>
                       <th>Ação</th>
                     </tr>
@@ -104,8 +104,8 @@ if (mysqli_num_rows($select_locacoes) > 0) {
                         <td><?php echo $dados_locacao['marca'];?>&nbsp<?php echo $dados_locacao['modelo'];?></td>
                         <td><?php echo $dados_locacao['cor'];?></td>
                         <td><?php echo $dados_locacao['placa'];?></td>
-						<td><?php $hoje = date("Y-m-d"); if ($dados_locacao["data_inicio"] == $hoje) {echo "Hoje";} else {echo $dados_locacao['data_inicio'];}?></td>
-						<td><?php $hoje = date("Y-m-d"); if ($dados_locacao["data_termino"] == $hoje) {echo "Hoje";} else {echo $dados_locacao['data_termino'];}?></td>
+						<!-- <td><?php //$hoje = date("Y-m-d"); if ($dados_locacao["data_inicio"] == $hoje) {echo "Hoje";} else {echo $dados_locacao['data_inicio'];}?></td> -->
+						<!-- <td><?php //$hoje = date("Y-m-d"); if ($dados_locacao["data_termino"] == $hoje) {echo "Hoje";} else {echo $dados_locacao['data_termino'];}?></td> -->
                         <td><?php echo $dados_locacao['hora_inicio'];?></td>
                         <td>X Y Z</td>
 					</tr>
