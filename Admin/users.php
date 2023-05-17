@@ -41,6 +41,7 @@ $select_usuarios = mysqli_query($conexao, "SELECT * from conta ORDER BY usuario 
     </header>
     <main>
         <h1 class="page-title">Usuários</h1>
+        <h3 class="page-title">Em desenvolvimento - algumas funções podem não estar completas</h3>
         <div class="div-content">
             <table class="tabela-dados">
                 <tr>

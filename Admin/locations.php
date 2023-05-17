@@ -41,6 +41,7 @@ $select_locacoes = mysqli_query($conexao, "SELECT locacao.*,cliente.nome,veiculo
     </header>
     <main>
         <h1 class="page-title">Locações</h1>
+        <h3 class="page-title">Em desenvolvimento - algumas funções podem não estar completas</h3>
         <div class="div-content">
 
                 <?php 

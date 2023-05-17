@@ -41,6 +41,7 @@ $select_reservas = mysqli_query($conexao, "SELECT reserva.*,cliente.nome,veiculo
     </header>
     <main>
         <h1 class="page-title">Próximas reservas</h1>
+        <h3 class="page-title">Em desenvolvimento - algumas funções podem não estar completas</h3>
         <div class="div-content">
             <table class="tabela-dados">
             <tr>
