@@ -1,5 +1,9 @@
 <?php session_start();
 
+$host_ip = $_SERVER['HTTP_HOST'];
+
+$url = "http://".$host_ip."/login.php";
+
 	if (!isset($_SESSION['usuario'])) {	
 	    
 	    session_destroy();

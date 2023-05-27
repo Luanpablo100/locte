@@ -17,7 +17,6 @@
 	try {
 		$conexao = mysqli_connect($servidor, $usuario, $senha, $db_name) or die('Banco de dados indisponível.');
 	  } catch (\Throwable $th) {
-		  echo "<script> alert(".$servidor.");</script>";
 		  echo "<script> alert('Erro de conexão com o banco de dados!');</script>";
 		  throw $th;
 	  }
