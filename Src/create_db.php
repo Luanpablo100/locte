@@ -4,8 +4,8 @@ require_once '../../vendor/autoload.php';
 
 use Dotenv\Dotenv;
 
-if (file_exists(dirname(dirname(__DIR__) . '\.env'))) {
-    $dotenv = Dotenv::createImmutable((dirname(dirname(__DIR__))));
+if (file_exists(dirname(__DIR__) . '/.env')) {
+    $dotenv = Dotenv::createImmutable((dirname(__DIR__)));
     $dotenv->load();
 }
 // Obtendo as variáveis de ambiente

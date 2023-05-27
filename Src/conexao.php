@@ -8,7 +8,6 @@
 		$dotenv = Dotenv::createImmutable((dirname(__DIR__)));
 		$dotenv->load();
 	}
-	$dotenv->load();
 
 	$servidor = $_ENV['DB_HOST'];
 	$usuario = $_ENV['DB_USER'];
