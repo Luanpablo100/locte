@@ -28,7 +28,7 @@ $select_veiculos = mysqli_query($conexao, "SELECT marca, modelo, MAX(codigo_imag
 </head>
 <body>
     <header class="header1">
-        <h1 class="h1Logo"><a href="/locte/admin">Locte</a></h1>
+        <h1 class="h1Logo"><a href="/Admin">Locte</a></h1>
         <h1 id="relogio"></h1>
         <nav class="header-nav">
             <a href="reservation.php"><button class="btn-nova-reserva">Nova reserva</button></a>

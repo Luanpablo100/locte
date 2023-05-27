@@ -1,6 +1,6 @@
 <?php require('./src/valida_admin.php');
 
-require('../Ssrc/conexao.php');
+require('../Src/conexao.php');
 
 $marca_veiculo = $_GET['brand'];
 $modelo_veiculo = $_GET['model'];
@@ -27,7 +27,7 @@ $select_veiculos = mysqli_query($conexao, "SELECT * FROM veiculo WHERE marca ='$
 </head>
 <body>
     <header class="header1">
-        <a href="/locte/admin"><h1 class="h1Logo">Locte</h1></a>
+        <a href="/Admin"><h1 class="h1Logo">Locte</h1></a>
         <h1 id="relogio"></h1>
         <nav class="header-nav">
             <a href="reservation.php"><button class="btn-nova-reserva">Nova reserva</button></a>
