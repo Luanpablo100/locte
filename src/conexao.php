@@ -1,8 +1,13 @@
 <?php
 
 	require_once '../vendor/autoload.php';
-	$dotenv = Dotenv\Dotenv::createImmutable(dirname(__DIR__));
-	$dotenv->load();	
+
+	use Dotenv\Dotenv;
+
+	if (file_exists(dirname(__DIR__) . '/.env')) {
+		$dotenv = Dotenv::create(dirname(__DIR__));
+		$dotenv->load();
+	}
 
 	$servidor = $_ENV['DB_HOST'];
 	$usuario = $_ENV['DB_USER'];
