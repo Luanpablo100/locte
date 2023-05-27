@@ -1,6 +1,6 @@
 <?php 
 	session_start(); 
 	session_destroy(); 
-	header("Location: http://localhost/locte/login.php"); 
+	header("Location: http://localhost/login.php"); 
 	exit;
 ?>

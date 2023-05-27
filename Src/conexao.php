@@ -27,10 +27,10 @@
 	
 	$host_ip = $_SERVER['HTTP_HOST'];
 	
-	$url = "http://".$host_ip."/locte/login.php";
+	$url = "http://".$host_ip."/login.php";
 
-	$url_admin = "http://".$host_ip."/locte/Admin";
+	$url_admin = "http://".$host_ip."/Admin";
 
-	$url_cliente = "http://".$host_ip."/locte/Costumer/";
+	$url_cliente = "http://".$host_ip."/Costumer/";
 	
 ?>
