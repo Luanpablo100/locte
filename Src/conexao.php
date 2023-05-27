@@ -6,6 +6,7 @@
 
 	if (file_exists(dirname(__DIR__) . '/.env')) {
 		$dotenv = Dotenv::createImmutable((dirname(__DIR__)));
+		$dotenv->load();
 	}
 	$dotenv->load();
 
