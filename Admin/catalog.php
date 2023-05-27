@@ -1,6 +1,6 @@
 <?php require('./src/valida_admin.php');
 
-require('../src/conexao.php');
+require('../Src/conexao.php');
 
 $select_veiculos = mysqli_query($conexao, "SELECT marca, modelo, MAX(codigo_imagem) AS imagem, COUNT(*) AS total, MIN(valor) AS valor FROM veiculo WHERE disponivel = 1 GROUP BY marca, modelo ORDER BY marca, modelo;");
 
@@ -96,7 +96,7 @@ $select_veiculos = mysqli_query($conexao, "SELECT marca, modelo, MAX(codigo_imag
                 <a href="users.php">Usuários</a>
             </li>
             <li>
-                <form action="../src/logoff.php">
+                <form action="../Src/logoff.php">
                     <button>Logoff</button>
                 </form>
             </li>

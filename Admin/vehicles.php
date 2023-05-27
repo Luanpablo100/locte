@@ -1,6 +1,6 @@
 <?php require('./src/valida_admin.php');
 
-require('../src/conexao.php');
+require('../Ssrc/conexao.php');
 
 $marca_veiculo = $_GET['brand'];
 $modelo_veiculo = $_GET['model'];
@@ -100,7 +100,7 @@ $select_veiculos = mysqli_query($conexao, "SELECT * FROM veiculo WHERE marca ='$
                 <a href="./users.php">Usuários</a>
             </li>
             <li>
-            <form action="../src/logoff.php">
+            <form action="../Src/logoff.php">
                     <button>Logoff</button>
                 </form>
             </li>

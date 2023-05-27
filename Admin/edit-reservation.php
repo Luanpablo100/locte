@@ -160,7 +160,7 @@
                 <a href="users.php">Usuários</a>
             </li>
             <li>
-                <form action="../src/logoff.php">
+                <form action="../Src/logoff.php">
                     <button>Logoff</button>
                 </form>
             </li>

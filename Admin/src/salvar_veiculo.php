@@ -1,6 +1,6 @@
 <?php 
 
-require('../../src/conexao.php');
+require('../../Src/conexao.php');
 
 	
 	//VERIFICANDO DADOS PARA ATUALIZAR

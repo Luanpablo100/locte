@@ -1,6 +1,6 @@
 <?php require('./src/valida_admin.php');
 
-require('../src/conexao.php');
+require('../Src/conexao.php');
 
 //Script que faz o select das informações de reserva, incluindo o nome do cliente e modelo e marca do veiculo
 $select_reservas = mysqli_query($conexao, "SELECT reserva.*,cliente.nome,veiculo.marca,veiculo.modelo,veiculo.cor,veiculo.placa from reserva JOIN cliente on reserva.idCliente = cliente.id JOIN veiculo ON reserva.idVeiculo = veiculo.id WHERE data_inicio = CURDATE() ORDER BY hora_inicio ASC;");
@@ -133,7 +133,7 @@ if (mysqli_num_rows($select_locacoes) > 0) {
                 <a href="./users.php">Usuários</a>
             </li>
             <li>
-                <form action="../src/logoff.php">
+                <form action="../Src/logoff.php">
                     <button>Logoff</button>
                 </form>
             </li>

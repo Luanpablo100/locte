@@ -1,6 +1,6 @@
 <?php require('./src/valida_admin.php');
 
-require('../src/conexao.php');
+require('../Src/conexao.php');
 
 //Script que faz o select das informações de reserva, incluindo o nome do cliente e modelo e marca do veiculo
 $select_usuarios = mysqli_query($conexao, "SELECT * from conta ORDER BY usuario ASC;");
@@ -84,7 +84,7 @@ $select_usuarios = mysqli_query($conexao, "SELECT * from conta ORDER BY usuario 
                 <a href="./users.php">Usuários</a>
             </li>
             <li>
-                <form action="../src/logoff.php">
+                <form action="../Src/logoff.php">
                     <button>Logoff</button>
                 </form>
             </li>

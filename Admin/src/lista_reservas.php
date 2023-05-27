@@ -1,6 +1,6 @@
 <?php require('valida_admin.php');
 
-	require('../../src/conexao.php');
+	require('../../Src/conexao.php');
 
 
 	$select_reservas = mysqli_query($conexao, "SELECT reserva.*,cliente.nome,veiculo.marca,veiculo.modelo from reserva JOIN cliente on reserva.idCliente = cliente.id JOIN veiculo ON reserva.idVeiculo = veiculo.id ORDER BY data_hora_inicio ASC;");
