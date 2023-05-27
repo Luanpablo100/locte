@@ -22,7 +22,7 @@ $select_veiculos = mysqli_query($conexao, "SELECT marca, modelo, MAX(codigo_imag
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Locte - Gerenciamento de locação</title>
-    <link rel="stylesheet" href="../public/Style/normalize.css">
+    <link rel="stylesheet" href="../public/style/normalize.css">
     <link rel="stylesheet" href="../public/style/main.css">
     <link rel="stylesheet" href="../public/style/catalog.css">
 </head>
@@ -102,7 +102,7 @@ $select_veiculos = mysqli_query($conexao, "SELECT marca, modelo, MAX(codigo_imag
             </li>
         </ul>
     </aside>
-    <script src="../public/Scripts/clock.js"></script>
-    <script src="../public/Scripts/asideMenu.js"></script>
+    <script src="../public/scripts/clock.js"></script>
+    <script src="../public/scripts/asideMenu.js"></script>
 </body>
 </html>

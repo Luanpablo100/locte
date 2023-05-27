@@ -25,8 +25,8 @@ $select_reservas = mysqli_query($conexao, "SELECT reserva.*,cliente.nome,veiculo
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Locte - Gerenciamento de locação</title>
-    <link rel="stylesheet" href="../public/Style/normalize.css">
-    <link rel="stylesheet" href="../public/Style/main.css">
+    <link rel="stylesheet" href="../public/style/normalize.css">
+    <link rel="stylesheet" href="../public/style/main.css">
 </head>
 <body>
     <header class="header1">
@@ -98,7 +98,7 @@ $select_reservas = mysqli_query($conexao, "SELECT reserva.*,cliente.nome,veiculo
             </li>
         </ul>
     </aside>
-    <script src="../public/Scripts/clock.js"></script>
-    <script src="../public/Scripts/asideMenu.js"></script>
+    <script src="../public/scripts/clock.js"></script>
+    <script src="../public/scripts/asideMenu.js"></script>
 </body>
 </html>
