@@ -1,8 +1,18 @@
 <?php
+
+require_once '../../vendor/autoload.php';
+
+use Dotenv\Dotenv;
+
+if (file_exists(dirname(dirname(__DIR__) . '\.env'))) {
+    $dotenv = Dotenv::createImmutable(dirname(dirname(dirname(__DIR__) . '\.env')));
+    $dotenv->load();
+}
 // Obtendo as variáveis de ambiente
-$dbHost = getenv('DB_HOST');
-$dbUser = getenv('DB_USER');
-$dbPass = getenv('DB_PSW');
+
+$dbHost = $_ENV['DB_HOST'];
+$dbUser = $_ENV['DB_USER'];
+$dbPass = $_ENV['DB_PSW'];
 
 // Conectando ao banco de dados
 $connection = new mysqli($dbHost, $dbUser, $dbPass);

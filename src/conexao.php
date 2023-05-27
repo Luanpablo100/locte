@@ -5,7 +5,7 @@
 	use Dotenv\Dotenv;
 
 	if (file_exists(dirname(__DIR__) . '/.env')) {
-		$dotenv = Dotenv::create(dirname(__DIR__));
+		$dotenv = Dotenv::createImmutable((dirname(__DIR__)));
 		$dotenv->load();
 	}
 

@@ -5,7 +5,7 @@ SET time_zone = "+00:00";
 CREATE DATABASE IF NOT EXISTS `locte_db` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
 USE `locte_db`;
 
-CREATE TABLE `cliente` (
+CREATE TABLE IF NOT EXISTS `cliente` (
   `id` int(11) NOT NULL,
   `nome` varchar(120) NOT NULL,
   `endereco` varchar(200) NOT NULL,
@@ -18,7 +18,7 @@ CREATE TABLE `cliente` (
   `IdConta` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
-CREATE TABLE `conta` (
+CREATE TABLE IF NOT EXISTS `conta` (
   `id` int(11) NOT NULL,
   `usuario` varchar(20) NOT NULL,
   `senha` varchar(50) NOT NULL,
@@ -28,7 +28,7 @@ CREATE TABLE `conta` (
 INSERT INTO `conta` (`id`, `usuario`, `senha`, `perfil`) VALUES
 (3, 'admin', 'admin', 'Admin');
 
-CREATE TABLE `funcionario` (
+CREATE TABLE IF NOT EXISTS `funcionario` (
   `id` int(11) NOT NULL,
   `nome` varchar(120) NOT NULL,
   `cargo` varchar(50) NOT NULL,
@@ -36,7 +36,7 @@ CREATE TABLE `funcionario` (
   `telefone` bigint(14) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
-CREATE TABLE `locacao` (
+CREATE TABLE IF NOT EXISTS `locacao` (
   `id` int(11) NOT NULL,
   `km_inicial` int(11) NOT NULL,
   `km_final` int(11) DEFAULT NULL,
@@ -49,7 +49,7 @@ CREATE TABLE `locacao` (
   `hora_termino` time DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
-CREATE TABLE `reserva` (
+CREATE TABLE IF NOT EXISTS `reserva` (
   `id` int(11) NOT NULL,
   `data_inicio` date NOT NULL DEFAULT current_timestamp(),
   `hora_inicio` time NOT NULL,
@@ -59,7 +59,7 @@ CREATE TABLE `reserva` (
   `idVeiculo` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
-CREATE TABLE `veiculo` (
+CREATE TABLE IF NOT EXISTS `veiculo` (
   `id` int(11) NOT NULL,
   `tipo` enum('Carro','Moto','Onibus','Caminhao') NOT NULL,
   `placa` varchar(7) NOT NULL,
