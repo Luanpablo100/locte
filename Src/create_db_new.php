@@ -117,9 +117,6 @@ $sqlInsertAdminUser = "INSERT INTO `conta` (`id`, `usuario`, `senha`, `perfil`) 
 (3, 'admin', 'admin', 'Admin');";
 
 
-sleep(10);
-
-
 if ($connection->query($sqlCreateTableCliente) === TRUE) {
     echo "<p>Tabela cliente criada com sucesso!</p>" . PHP_EOL;
 } else {
@@ -128,7 +125,7 @@ if ($connection->query($sqlCreateTableCliente) === TRUE) {
     exit;
 }
 
-sleep(10);
+sleep(2);
 
 if ($connection->query($sqlCreateTableConta) === TRUE) {
     echo "<p>Tabela conta criada com sucesso!</p>" . PHP_EOL;
@@ -138,7 +135,7 @@ if ($connection->query($sqlCreateTableConta) === TRUE) {
     exit;
 }
 
-sleep(10);
+sleep(2);
 
 if ($connection->query($sqlCreateTableFuncionario) === TRUE) {
     echo "<p>Tabela funcionário criada com sucesso!</p>" . PHP_EOL;
@@ -148,7 +145,7 @@ if ($connection->query($sqlCreateTableFuncionario) === TRUE) {
     exit;
 }
 
-sleep(10);
+sleep(2);
 
 if ($connection->query($sqlCreateTableLocacao) === TRUE) {
     echo "<p>Tabela Locação criada com sucesso!</p>" . PHP_EOL;
@@ -158,7 +155,7 @@ if ($connection->query($sqlCreateTableLocacao) === TRUE) {
     exit;
 }
 
-sleep(10);
+sleep(5);
 
 if ($connection->query($sqlCreateTableReserva) === TRUE) {
     echo "<p>Tabela Reserva criada com sucesso!</p>" . PHP_EOL;
@@ -168,7 +165,7 @@ if ($connection->query($sqlCreateTableReserva) === TRUE) {
     exit;
 }
 
-sleep(10);
+sleep(5);
 
 if ($connection->query($sqlCreateTableVeiculo) === TRUE) {
     echo "<p>Tabela Veiculo criada com sucesso!</p>" . PHP_EOL;
@@ -178,7 +175,7 @@ if ($connection->query($sqlCreateTableVeiculo) === TRUE) {
     exit;
 }
 
-sleep(20);
+sleep(5);
 
 
 if ($connection->multi_query($sqlForeingKeysContent) === TRUE) {
@@ -190,7 +187,7 @@ if ($connection->multi_query($sqlForeingKeysContent) === TRUE) {
     echo "<p>Erro na execução das consultas SQL do arquivo ForeingKeys: </p>" . $connection->error . PHP_EOL;
 }
 
-sleep(20);
+sleep(5);
 
 
 if ($connection->query($sqlInsertAdminUser) === TRUE) {
@@ -201,7 +198,6 @@ if ($connection->query($sqlInsertAdminUser) === TRUE) {
     exit;
 }
 
-sleep(10);
 // Fechando a conexão
 $connection->close();
 ?>
