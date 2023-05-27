@@ -1,3 +1,23 @@
+<?php require('./src/valida_admin.php');
+
+require('../src/conexao.php');
+
+//Script que faz o select das informações de reserva, incluindo o nome do cliente e modelo e marca do veiculo
+$select_usuarios = mysqli_query($conexao, "SELECT * from conta ORDER BY usuario ASC;");
+            
+    if (mysqli_num_rows($select_usuarios) > 0) {
+        
+        $dados_usuarios = mysqli_fetch_assoc($select_usuarios);
+        
+    } else {
+        
+        echo "<script> alert ('NÃO EXISTEM RESERVAS CADASTRADOS!');</script>";
+            
+        // echo "<script> window.location.href='$url_admin/';</script>";
+        
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -5,22 +25,23 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Locte - Gerenciamento de locação</title>
-    <link rel="stylesheet" href="./Style/normalize.css">
-    <link rel="stylesheet" href="./Style/main.css">
+    <link rel="stylesheet" href="../public/Style/normalize.css">
+    <link rel="stylesheet" href="../public/Style/main.css">
 </head>
 <body>
     <header class="header1">
-        <a href="index.html"><h1 class="h1Logo">Locte</h1></a>
+        <a href="/locte/admin"><h1 class="h1Logo">Locte</h1></a>
         <h1 id="relogio"></h1>
         <nav class="header-nav">
-            <a href="reservation.html"><button class="btn-nova-reserva">Nova reserva</button></a>
+            <a href="reservation.php"><button class="btn-nova-reserva">Nova reserva</button></a>
             <div id="div-menu-hamburguer">
-                <img src="/Img/hambuguer-menu-removebg-preview.png" alt="Menu lateral" class="menuIcon">
+                <img src="../public/Img/hambuguer-menu-removebg-preview.png" alt="Menu lateral" class="menuIcon">
             </div>
         </nav>
     </header>
     <main>
         <h1 class="page-title">Usuários</h1>
+        <h3 class="page-title">Em desenvolvimento - algumas funções podem não estar completas</h3>
         <div class="div-content">
             <table class="tabela-dados">
                 <tr>
@@ -29,12 +50,18 @@
                   <th>Perfil</th>
                   <th>Ação</th>
                 </tr>
-                <tr>
-                  <td>Luan Oliveira</td>
+
+                <?php do{
+		?>
+            <tr>
+                  <td><?php echo $dados_usuarios['usuario'];?></td>
                   <td>Gerente</td>
-                  <td>Administrador</td>
-                  <td><div class="actions-div" ><img src="Img/chave.png" alt="" class="action-button" onclick="alert('Resetar a senha')"><img src="Img/editar.png" alt="" class="action-button"><img src="Img/lixeira.png" alt="" class="action-button" onclick="alert('Apagar o usuário?')"></div></td>
-                </tr>                                      
+                  <td><?php echo $dados_usuarios['perfil'];?></td>
+                  <td><div class="actions-div" ><img src="../public/Img/chave.png" alt="" class="action-button" onclick="alert('Resetar a senha')"><img src="../public/Img/editar.png" alt="" class="action-button"><img src="../public/Img/lixeira.png" alt="" class="action-button" onclick="alert('Apagar o usuário?')"></div></td>
+            </tr>    
+        		
+		<?php }while ($dados_usuarios = mysqli_fetch_assoc($select_usuarios));?>
+                                      
               </table>
         </div>
     </main>
@@ -45,24 +72,24 @@
                 Gerenciar
             </li>
             <li>
-                <a href="./vehicles.html">Veículos</a>
+                <a href="./catalog.php">Veículos</a>
             </li>
             <li>
-                <a href="./reservations.html">Reservas</a>
+                <a href="./reservations.php">Reservas</a>
             </li>
             <li>
-                <a href="./devolutions.html">Devoluções</a>
+                <a href="./locations.php">Locações</a>
             </li>
             <li>
-                <a href="./users.html">Usuários</a>
+                <a href="./users.php">Usuários</a>
             </li>
             <li>
-                <a href="./login.html">Logoff</a>
+                <form action="../src/logoff.php">
+                    <button>Logoff</button>
+                </form>
             </li>
         </ul>
     </aside>
-    <script src="Scripts/clock.js"></script>
-    <script src="Scripts/asideMenu.js"></script>
+    <script src="../public/Scripts/clock.js"></script>
+    <script src="../public/Scripts/asideMenu.js"></script>
 </body>
->>>>>>> main:users.html
-</html>
