@@ -1,15 +1,20 @@
-<?php //session_start();
+<?php
 
-	$servidor = "localhost";
-	$usuario = "root";
-	$senha = "";
-	$db_name = "locte_db";
+	require_once '../vendor/autoload.php';
+	$dotenv = Dotenv\Dotenv::createImmutable(dirname(__DIR__));
+	$dotenv->load();	
+
+	$servidor = $_ENV['DB_HOST'];
+	$usuario = $_ENV['DB_USER'];
+	$senha = $_ENV['DB_PSW'];
+	$db_name = $_ENV['DB_NAME'];
 	
 	try {
 		$conexao = mysqli_connect($servidor, $usuario, $senha, $db_name) or die('Banco de dados indisponível.');
 	  } catch (\Throwable $th) {
-		// throw $th;
-		echo "<script> alert('Erro de conexão com o banco de dados!');</script>";
+		  echo "<script> alert(".$servidor.");</script>";
+		  echo "<script> alert('Erro de conexão com o banco de dados!');</script>";
+		  throw $th;
 	  }
 	
 	
