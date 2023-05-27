@@ -6,8 +6,8 @@ use Dotenv\Dotenv;
 
 if (file_exists(dirname(dirname(__DIR__) . '\.env'))) {
     $dotenv = Dotenv::createImmutable((dirname(dirname(__DIR__))));
-    $dotenv->load();
 }
+$dotenv->load();
 // Obtendo as variáveis de ambiente
 
 $dbHost = $_ENV['DB_HOST'];
