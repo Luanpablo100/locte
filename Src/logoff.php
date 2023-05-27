@@ -1,6 +1,6 @@
 <?php 
 	session_start(); 
 	session_destroy(); 
-	header("Location: http://localhost/login.php"); 
+	header("Location: $host_ip/login.php"); 
 	exit;
 ?>

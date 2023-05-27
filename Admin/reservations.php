@@ -27,6 +27,7 @@ $select_reservas = mysqli_query($conexao, "SELECT reserva.*,cliente.nome,veiculo
     <title>Locte - Gerenciamento de locação</title>
     <link rel="stylesheet" href="../public/style/normalize.css">
     <link rel="stylesheet" href="../public/style/main.css">
+    <link rel="shortcut icon" href="../public/img/car.svg">
 </head>
 <body>
     <header class="header1">
@@ -35,7 +36,7 @@ $select_reservas = mysqli_query($conexao, "SELECT reserva.*,cliente.nome,veiculo
         <nav class="header-nav">
             <a href="edit-reservation.php"><button class="btn-nova-reserva">Nova reserva</button></a>
             <div id="div-menu-hamburguer">
-                <img src="../public/Img/hambuguer-menu-removebg-preview.png" alt="Menu lateral" class="menuIcon">
+                <img src="../public/img/hambuguer-menu-removebg-preview.png" alt="Menu lateral" class="menuIcon">
             </div>
         </nav>
     </header>

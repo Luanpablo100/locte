@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="../public/style/normalize.css">
     <link rel="stylesheet" href="../public/style/main.css">
     <link rel="stylesheet" href="../public/style/vehicle.css">
+    <link rel="shortcut icon" href="../public/img/car.svg">
 </head>
 <body>
     <header class="header1">
@@ -18,7 +19,7 @@
         <nav class="header-nav">
             <a href="reservation.php"><button class="btn-nova-reserva">Nova reserva</button></a>
             <div id="div-menu-hamburguer">
-                <img src="../public/Img/hambuguer-menu-removebg-preview.png" alt="Menu lateral" class="menuIcon">
+                <img src="../public/img/hambuguer-menu-removebg-preview.png" alt="Menu lateral" class="menuIcon">
             </div>
         </nav>
     </header>
