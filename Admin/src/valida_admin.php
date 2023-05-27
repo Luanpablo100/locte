@@ -9,7 +9,7 @@
 
 		echo "<script> alert ('ERRO: É NECESSÁRIO FAZER LOGIN');</script>";
 		
-		echo "<script> window.location.href='http://localhost/locte/login.html';</script>";
+		echo "<script> window.location.href='$url';</script>";
 
 	}	
 
@@ -25,7 +25,7 @@
 		unset ($_SESSION['url_admin']);
 		unset ($_SESSION['url_cliente']);
 
-		echo "<script> window.location.href='http://localhost/locte/login.php';</script>";				
+		echo "<script> window.location.href='$url';</script>";				
 
 	} 
 
