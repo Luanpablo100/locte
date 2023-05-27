@@ -39,14 +39,36 @@ if ($connection->query($sqlCreateDatabase) === TRUE) {
 // Conectando ao banco de dados criado
 $connection->select_db($databaseName);
 
-// Executando o script SQL
-$sqlFilePath = './Src/database/locte_db_construct.sql'; // Substitua o caminho para o arquivo SQL aqui
+// Diretório com os arquivos SQL
+$sqlDirectory = './database/construct/';
 
-$sql = file_get_contents($sqlFilePath);
-if ($connection->multi_query($sql) === TRUE) {
-    echo "Consultas SQL executadas com sucesso!" . PHP_EOL;
-} else {
-    echo "Erro na execução das consultas SQL: " . $connection->error . PHP_EOL;
+// Função para executar as consultas SQL de um arquivo
+function executeSqlFromFile($connection, $filePath)
+{
+    $sql = file_get_contents($filePath);
+    if ($connection->multi_query($sql) === TRUE) {
+        while ($connection->more_results() && $connection->next_result()) {
+            // Limpa os resultados anteriores
+        }
+        echo "Consultas SQL do arquivo $filePath executadas com sucesso!" . PHP_EOL;
+    } else {
+        echo "Erro na execução das consultas SQL do arquivo $filePath: " . $connection->error . PHP_EOL;
+    }
+}
+
+// Loop infinito para executar a cada 10 segundos
+while (true) {
+    $sqlFiles = glob($sqlDirectory . '*.sql');
+
+    if (!empty($sqlFiles)) {
+        foreach ($sqlFiles as $sqlFile) {
+            executeSqlFromFile($connection, $sqlFile);
+        }
+    } else {
+        echo "Nenhum arquivo SQL encontrado no diretório $sqlDirectory" . PHP_EOL;
+    }
+
+    sleep(10); // Aguarda 10 segundos antes de executar novamente
 }
 
 // Fechando a conexão
