@@ -79,17 +79,17 @@ $sqlCreateTableLocacao = "CREATE TABLE IF NOT EXISTS `locacao` (
   `valor` float NOT NULL,
   `idCliente` int(11) NOT NULL,
   `idVeiculo` int(11) NOT NULL,
-  `data_inicio` date NOT NULL DEFAULT current_timestamp(),
+  `data_inicio` date NOT NULL,
   `data_termino` date DEFAULT NULL,
-  `hora_inicio` time NOT NULL DEFAULT current_timestamp(),
+  `hora_inicio` time NOT NULL,
   `hora_termino` time DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;";
 
 $sqlCreateTableReserva = "CREATE TABLE IF NOT EXISTS `reserva` (
     `id` int(11) NOT NULL,
-    `data_inicio` date NOT NULL DEFAULT current_timestamp(),
+    `data_inicio` date NOT NULL,
     `hora_inicio` time NOT NULL,
-    `hora_termino` time NOT NULL DEFAULT current_timestamp(),
+    `hora_termino` time NOT NULL,
     `data_termino` date NOT NULL,
     `idCliente` int(11) NOT NULL,
     `idVeiculo` int(11) NOT NULL
