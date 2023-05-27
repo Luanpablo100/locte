@@ -2,9 +2,6 @@ SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
 SET time_zone = "+00:00";
 
-CREATE DATABASE IF NOT EXISTS `locte_db` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
-USE `locte_db`;
-
 CREATE TABLE IF NOT EXISTS `cliente` (
   `id` int(11) NOT NULL,
   `nome` varchar(120) NOT NULL,
