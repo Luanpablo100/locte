@@ -17,7 +17,7 @@
                     <!-- <small>Seu sistema de locação de veículos</small> -->
                 </h2>
             </div>
-            <form class="card-form" action="./src/login.php" method="POST">
+            <form class="card-form" action="./Src/login.php" method="POST">
                 <div class="input">
                     <input type="text" class="input-field" required id="user_login" name="user_login"/>
                     <label class="input-label">Usuário</label>
