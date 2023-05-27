@@ -1,4 +1,4 @@
-<?php require('./Src/create_db.php');?>
+<?php require('./Src/create_db_new.php');?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
