@@ -31,7 +31,7 @@
 
                     <img src="../public/img/car-png.webp" alt="Fiat Mobi" id="img-car">
                     <div class="input-group">
-                        <input type="file" accept="image/png" id="input-car-img" name="imagem_veiculo">
+                        <input type="file" accept="image/png" id="input-car-img" name="imagem_veiculo" required>
                         <div class="input">
                             <input type="number" class="input-field" required value="250" name="valor_veiculo"/>
                             <label class="input-label">Valor da diária</label>

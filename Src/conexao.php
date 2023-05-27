@@ -1,6 +1,6 @@
 <?php
 
-	require_once '/vendor/autoload.php';
+	require_once __DIR__ . '/../vendor/autoload.php';
 
 	use Dotenv\Dotenv;
 
@@ -17,6 +17,7 @@
 	try {
 		$conexao = mysqli_connect($servidor, $usuario, $senha, $db_name) or die('Banco de dados indisponível.');
 	  } catch (\Throwable $th) {
+
 		  echo "<script> alert('Erro de conexão com o banco de dados!');</script>";
 		  throw $th;
 	  }
