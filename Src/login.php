@@ -19,12 +19,7 @@
 		if(mysqli_num_rows($sql_valida_login) > 0){
 	
 		$registros_login = mysqli_fetch_assoc($sql_valida_login);
-		// echo($registros_login['usuario']);
-		// echo($registros_login['senha']);
-		// echo($registros_login['perfil']);
-				 
-			// $_SESSION['nome_completo_login'] = $registros_login['nome_completo_login'];
-			// $_SESSION['nome_completo_login'] = $registros_login['nome_completo_login'];
+
 			$_SESSION['usuario'] = $registros_login['usuario'];
 			$_SESSION['perfil'] = $registros_login['perfil'];
 
