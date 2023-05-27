@@ -23,7 +23,7 @@ if ($connection->connect_error) {
 }
 
 // Executando o script SQL
-$sql = file_get_contents('./locte_db_construct.sql'); // Substitua o caminho para o arquivo SQL aqui
+$sql = file_get_contents('./database/locte_db_construct.sql'); // Substitua o caminho para o arquivo SQL aqui
 if ($connection->multi_query($sql) === TRUE) {
     echo "Banco de dados e tabelas criados com sucesso!";
 } else {
