@@ -1,6 +1,6 @@
 <?php
 
-require_once './vendor/autoload.php';
+require_once __DIR__ . '/../vendor/autoload.php';
 
 use Dotenv\Dotenv;
 
@@ -110,7 +110,7 @@ $sqlCreateTableVeiculo = "CREATE TABLE IF NOT EXISTS `veiculo` (
   ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;";
 
 
-$sqlForeingKeysFilePath = './Src/database/construct/7.foreing_keys.sql'; // Substitua o caminho para o arquivo SQL aqui
+$sqlForeingKeysFilePath = __DIR__ . '/database/construct/7.foreing_keys.sql'; // Substitua o caminho para o arquivo SQL aqui
 $sqlForeingKeysContent = file_get_contents($sqlForeingKeysFilePath);
 
 $sqlInsertAdminUser = "INSERT INTO `conta` (`id`, `usuario`, `senha`, `perfil`) VALUES

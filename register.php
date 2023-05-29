@@ -17,20 +17,20 @@
                     <!-- <small>Seu sistema de locação de veículos</small> -->
                 </h2>
             </div>
-            <form class="card-form" action="./Src/login.php" method="POST">
+            <form class="card-form" action="./Src/create_account.php" method="POST">
                 <div class="input">
-                    <input type="text" class="input-field" required id="user_login" name="user_login"/>
+                    <input type="text" class="input-field" required id="user_register" name="user_register"/>
                     <label class="input-label">Usuário</label>
                 </div>
                             <div class="input">
-                    <input type="password" class="input-field" required id="passwd_login" name="passwd_login"/>
+                    <input type="password" class="input-field" required id="passwd_register" name="passwd_register"/>
                     <label class="input-label">Senha</label>
                 </div>
                 <div class="action">
-                    <button class="action-button">Entrar</button>
+                    <button class="register-action-button">Cadastrar</button>
                 </div>
                 <div>
-                    <a href="/register.php">Cadastre-se</a>
+                    <a href="/login.php">Login</a>
                 </div>
             </form>
         </div>

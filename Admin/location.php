@@ -1,4 +1,25 @@
-<?php require('./src/valida_admin.php');?>
+<?php require('./src/valida_admin.php');
+
+// require('../Src/conexao.php');
+require __DIR__ . '/../Src/conexao.php';
+
+$select_veiculos = mysqli_query($conexao, "SELECT marca, modelo FROM veiculo WHERE disponivel = 1 GROUP BY marca, modelo ORDER BY marca, modelo");
+
+$dadosVeiculos = array();
+while ($row = mysqli_fetch_assoc($select_veiculos)) {
+    $dadosVeiculos[] = $row;
+}
+$dadosVeiculos_json = json_encode($dadosVeiculos);
+
+$select_clientes = mysqli_query($conexao, "SELECT id, nome, email FROM cliente ORDER BY nome");
+
+$dadosClientes = array();
+while ($row = mysqli_fetch_assoc($select_clientes)) {
+    $dadosClientes[] = $row;
+}
+$dadosClientes_json = json_encode($dadosClientes);
+
+?>
 
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -9,12 +30,12 @@
     <title>Locte - Gerenciamento de locação</title>
     <link rel="stylesheet" href="../public/style/normalize.css">
     <link rel="stylesheet" href="../public/style/main.css">
-    <link rel="stylesheet" href="../public/style/vehicle.css">
+    <link rel="stylesheet" href="../public/style/reservation.css">
     <link rel="shortcut icon" href="../public/img/car.svg">
 </head>
 <body>
     <header class="header1">
-        <h1 class="h1Logo"><a href="/Admin">Locte</a></h1>
+        <a href="/Admin"><h1 class="h1Logo">Locte</h1></a>
         <h1 id="relogio"></h1>
         <nav class="header-nav">
             <a href="reservation.php"><button class="btn-nova-reserva">Nova locação</button></a>
@@ -24,55 +45,72 @@
         </nav>
     </header>
     <main>
-        <h1 class="page-title">Editar veículo</h1>
+        <h1 class="page-title">Nova locação</h1>
+
         <h3 class="page-title">Em desenvolvimento - página modelo</h3>
         <div class="div-content">
-            <div class="vehicle-card">
-                <img src="https://cdn.appdealersites.com.br/saga/blog/1.png" alt="Fiat Mobi">
-                <form action="reservation.php">
-                    <div class="input-group">
+            <div class="container">
+                <!-- code here -->
+                <div class="card">
+                    <form class="card-form" action="/">
+                        <h2 class="header-description">Dados do cliente</h2>
                         <div class="input">
-                            <input type="number" class="input-field" required value="250"/>
-                            <label class="input-label">Valor da diária</label>
+                                <label class="">Clientes</label>
+                                <select name="select_cliente" id="select_cliente" required>
+                                    <option>Selecione o cliente</option>
+                                </select>
+                            </div>
+
+                        <h2 class="header-description">Dados do veículo</h2>
+                        <div class="input-group">
+                            <div class="input">
+                                <label class="">Marca</label>
+                                <select name="marca_veiculo" id="marca_veiculo" onchange="atualizarModelos()" required>
+                                    <option>Selecione a marca</option>
+                                </select>
+                            </div>
+                            <div class="input">
+                                <label class="">Modelo</label>
+                                <select name="modelo_veiculo" id="modelo_veiculo" required>
+                                    <option>Selecione o modelo</option>
+                                </select>
+                            </div>
                         </div>
-                        <button class="action-button">Reservar</button>
-                    </div>
-                </form>
-            </div>
-            <form action="vehicles.html" class="vehicle-edit-form">
-                <h1 class="vehicle-name">FIAT MOBI - PUV9244</h1>
-                <div class="input-group">
-                    <div class="input">
-                        <input type="number" class="input-field" required value="8000"/>
-                        <label class="input-label">Quilometragem total</label>
-                    </div>
-                    <div class="input-group-2">
-                        <div class="input">
-                            <input type="number" class="input-field" disabled value="2020"/>
-                            <label class="input-label">Ano</label>
+                        
+                        <div class="input-group">
+                            <div class="input">
+                                <input type="date" class="input-field" required/>
+                                <label class="input-label">Data de retirada</label>
+                            </div>
+                            <div class="input">
+                                <input type="date" class="input-field" required/>
+                                <label class="input-label">Data de retirada</label>
+                            </div>
                         </div>
-                        <div class="input">
-                            <input type="text" class="input-field" required value="Vermelho"/>
-                            <label class="input-label">Cor</label>
+                        
+                        <div class="input-radio">
+                            <label class="input-label-radio main-label-radio">Método de pagamento</label>
+                            <div class="radio-group">
+                                <div>
+                                    <label for="avista" >À vista</label>
+                                    <input type="radio" class="input-field" required id="avista" name="pagamento" value="Avista"/>
+                                </div>
+                                <div>
+                                    <label for="credito">Crédito</label>
+                                    <input type="radio" class="input-field" required id="credito" name="pagamento" value="Crédito"/>
+                                </div>
+                                <div>
+                                    <label for="debito">Débito</label>
+                                    <input type="radio" class="input-field" required id="debito" name="pagamento" value="Débito"/>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="input-group-2">
-                        <div class="input">
-                            <input type="text" class="input-field" required value="Alcool/Gasolina"/>
-                            <label class="input-label">Combustível</label>
+                        <div class="action">
+                            <button class="action-button">Reservar</button>
                         </div>
-                        <div class="input">
-                            <input type="number" class="input-field" disabled value="5"/>
-                            <label class="input-label">Quantidade max. passageiros</label>
-                        </div>
-                    </div>
-                    <div class="input">
-                        <input type="text" class="input-field" required value="Disponível"/>
-                        <label class="input-label">Situação do veículo</label>
-                    </div>
-                    <button class="action-button">Atualizar</button>
+                    </form>
                 </div>
-            </form>
+            </div>
         </div>
     </main>
     <aside class="menuLateral hidden" id="asideMenu">
@@ -88,7 +126,7 @@
                 <a href="reservations.php">Reservas</a>
             </li>
             <li>
-                <a href="locations.php">Locações</a>
+                <a href="./locations.php">Locações</a>
             </li>
             <li>
                 <a href="users.php">Usuários</a>
@@ -100,6 +138,49 @@
             </li>
         </ul>
     </aside>
+    <script>
+
+        var dadosClientes = <?php echo $dadosClientes_json; ?>;
+        var dadosVeiculos = <?php echo $dadosVeiculos_json; ?>;
+
+        console.log(dadosClientes)
+
+        var selectCliente = document.getElementById('select_cliente');
+        var selectMarca = document.getElementById('marca_veiculo');
+        var selectModelo = document.getElementById('modelo_veiculo');
+
+            for (var i = 0; i < dadosClientes.length; i++) {
+                    var option = document.createElement('option');
+                    option.text = `${dadosClientes[i].nome} - ${dadosClientes[i].email}` ;
+                    selectCliente.add(option);
+            }
+
+            for (var i = 0; i < dadosVeiculos.length; i++) {
+                    var option = document.createElement('option');
+                    option.text = dadosVeiculos[i].marca;
+                    selectMarca.add(option);
+            }
+
+        function atualizarModelos() {
+
+            // selectModelo.innerHTML = '<option>Selecione o modelo</option>'
+            selectModelo.innerHTML = ''
+
+
+            for (var i = 0; i < dadosVeiculos.length; i++) {
+                if (dadosVeiculos[i].marca === selectMarca.value) {
+                    var option = document.createElement('option');
+                    option.text = dadosVeiculos[i].modelo;
+                    selectModelo.add(option);
+                }
+            }
+        }
+
+
+    </script>
+
+
+
     <script src="../public/scripts/clock.js"></script>
     <script src="../public/scripts/asideMenu.js"></script>
 </body>

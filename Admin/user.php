@@ -24,7 +24,8 @@
         </nav>
     </header>
     <main>
-        <h1 class="page-title">Editar reserva</h1>
+        <h1 class="page-title">Nova locação</h1>
+        <h3 class="page-title">Em desenvolvimento - página modelo</h3>
         <div class="div-content">
             <div class="container">
                 <!-- code here -->
@@ -155,7 +156,7 @@
                 <a href="reservations.php">Reservas</a>
             </li>
             <li>
-                <a href="./locations.php">Reservas</a>
+                <a href="./locations.php">Locações</a>
             </li>
             <li>
                 <a href="users.php">Usuários</a>

@@ -9,70 +9,89 @@
     <title>Locte - Gerenciamento de locação</title>
     <link rel="stylesheet" href="../public/style/normalize.css">
     <link rel="stylesheet" href="../public/style/main.css">
-    <link rel="stylesheet" href="../public/style/vehicle.css">
+    <link rel="stylesheet" href="../public/style/reservation.css">
     <link rel="shortcut icon" href="../public/img/car.svg">
 </head>
 <body>
     <header class="header1">
-        <h1 class="h1Logo"><a href="/Admin">Locte</a></h1>
+        <a href="/Admin"><h1 class="h1Logo">Locte</h1></a>
         <h1 id="relogio"></h1>
         <nav class="header-nav">
-            <a href="reservation.php"><button class="btn-nova-reserva">Nova locação</button></a>
+            <a href="reservation.php"><button class="btn-nova-reserva">Novo cliente</button></a>
             <div id="div-menu-hamburguer">
                 <img src="../public/img/hambuguer-menu-removebg-preview.png" alt="Menu lateral" class="menuIcon">
             </div>
         </nav>
     </header>
     <main>
-        <h1 class="page-title">Editar veículo</h1>
+        <h1 class="page-title">Nova locação</h1>
         <h3 class="page-title">Em desenvolvimento - página modelo</h3>
         <div class="div-content">
-            <div class="vehicle-card">
-                <img src="https://cdn.appdealersites.com.br/saga/blog/1.png" alt="Fiat Mobi">
-                <form action="reservation.php">
-                    <div class="input-group">
-                        <div class="input">
-                            <input type="number" class="input-field" required value="250"/>
-                            <label class="input-label">Valor da diária</label>
+            <div class="container">
+                <!-- code here -->
+                <div class="card">
+                    <form class="card-form" action="/">
+                        <h2 class="header-description">Dados do cliente</h2>
+                        <div class="input-group">
+                            <div class="input">
+                                <input type="text" class="input-field" required/>
+                                <label class="input-label">Nome</label>
+                            </div>
+                            <div class="input">
+                                <input type="text" class="input-field" required/>
+                                <label class="input-label">Sobrenome</label>
+                            </div>
                         </div>
-                        <button class="action-button">Reservar</button>
-                    </div>
-                </form>
-            </div>
-            <form action="vehicles.html" class="vehicle-edit-form">
-                <h1 class="vehicle-name">FIAT MOBI - PUV9244</h1>
-                <div class="input-group">
-                    <div class="input">
-                        <input type="number" class="input-field" required value="8000"/>
-                        <label class="input-label">Quilometragem total</label>
-                    </div>
-                    <div class="input-group-2">
-                        <div class="input">
-                            <input type="number" class="input-field" disabled value="2020"/>
-                            <label class="input-label">Ano</label>
+                        <div class="input-group">
+                            <div class="input-radio">
+                                <label class="input-label-radio main-label-radio">Tipo do documento</label>
+                                <div class="radio-group">
+                                    <div>
+                                        <label for="masculino">CPF</label>
+                                        <input type="radio" class="input-field" required id="cpf" name="documento" value="cpf"/>
+                                    </div>
+                                    <div>
+                                        <label for="feminino">CNH</label>
+                                        <input type="radio" class="input-field" required id="chn" name="documento" value="cnh"/>
+                                    </div>
+                                    <div>
+                                        <label for="naodefinido">RG</label>
+                                        <input type="radio" class="input-field" required id="rg" name="documento" value="rg"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="input">
+                                <input type="number" class="input-field" required/>
+                                <label class="input-label">Número do documento</label>
+                            </div>
                         </div>
-                        <div class="input">
-                            <input type="text" class="input-field" required value="Vermelho"/>
-                            <label class="input-label">Cor</label>
+                        
+                        <div class="input-radio">
+                            <label class="input-label-radio main-label-radio">Sexo</label>
+                            <div class="radio-group">
+                                <div>
+                                    <label for="masculino" >Masculino</label>
+                                    <input type="radio" class="input-field" required id="masculino" name="sexo" value="Masculino"/>
+                                </div>
+                                <div>
+                                    <label for="feminino">Feminino</label>
+                                    <input type="radio" class="input-field" required id="feminino" name="sexo" value="Feminino"/>
+                                </div>
+                                <div>
+                                    <label for="naodefinido">Não definido</label>
+                                    <input type="radio" class="input-field" required id="naodefinido" name="sexo" value="Não definido"/>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="input-group-2">
-                        <div class="input">
-                            <input type="text" class="input-field" required value="Alcool/Gasolina"/>
-                            <label class="input-label">Combustível</label>
+                        
+
+
+                        <div class="action">
+                            <button class="action-button">Cadastrar</button>
                         </div>
-                        <div class="input">
-                            <input type="number" class="input-field" disabled value="5"/>
-                            <label class="input-label">Quantidade max. passageiros</label>
-                        </div>
-                    </div>
-                    <div class="input">
-                        <input type="text" class="input-field" required value="Disponível"/>
-                        <label class="input-label">Situação do veículo</label>
-                    </div>
-                    <button class="action-button">Atualizar</button>
+                    </form>
                 </div>
-            </form>
+            </div>
         </div>
     </main>
     <aside class="menuLateral hidden" id="asideMenu">
@@ -88,7 +107,7 @@
                 <a href="reservations.php">Reservas</a>
             </li>
             <li>
-                <a href="locations.php">Locações</a>
+                <a href="./locations.php">Locações</a>
             </li>
             <li>
                 <a href="users.php">Usuários</a>

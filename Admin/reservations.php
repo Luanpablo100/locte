@@ -9,12 +9,6 @@ $select_reservas = mysqli_query($conexao, "SELECT reserva.*,cliente.nome,veiculo
         
         $dados_reserva = mysqli_fetch_assoc($select_reservas);
         
-    } else {
-        
-        echo "<script> alert ('NÃO EXISTEM RESERVAS CADASTRADOS!');</script>";
-            
-        // echo "<script> window.location.href='$url_admin/';</script>";
-        
     }
 ?>
 
@@ -34,7 +28,7 @@ $select_reservas = mysqli_query($conexao, "SELECT reserva.*,cliente.nome,veiculo
         <a href="/Admin"><h1 class="h1Logo">Locte</h1></a>
         <h1 id="relogio"></h1>
         <nav class="header-nav">
-            <a href="edit-reservation.php"><button class="btn-nova-reserva">Nova reserva</button></a>
+            <a href="edit-reservation.php"><button class="btn-nova-reserva">Nova locação</button></a>
             <div id="div-menu-hamburguer">
                 <img src="../public/img/hambuguer-menu-removebg-preview.png" alt="Menu lateral" class="menuIcon">
             </div>
@@ -54,7 +48,7 @@ $select_reservas = mysqli_query($conexao, "SELECT reserva.*,cliente.nome,veiculo
                   <th>Data</th>
                   <th>Ação</th>
                 </tr>
-            <?php do{
+            <?php while ($dados_reserva = mysqli_fetch_assoc($select_reservas)){
 			?>
 					
 					<tr>
@@ -69,7 +63,7 @@ $select_reservas = mysqli_query($conexao, "SELECT reserva.*,cliente.nome,veiculo
 						
 					</tr>
 
-				<?php }while ($dados_reserva = mysqli_fetch_assoc($select_reservas));?>
+				<?php };?>
 
               </table>
         </div>

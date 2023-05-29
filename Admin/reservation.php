@@ -17,14 +17,14 @@
         <a href="/Admin"><h1 class="h1Logo">Locte</h1></a>
         <h1 id="relogio"></h1>
         <nav class="header-nav">
-            <a href="reservation.php"><button class="btn-nova-reserva">Nova reserva</button></a>
+            <a href="reservation.php"><button class="btn-nova-reserva">Nova locação</button></a>
             <div id="div-menu-hamburguer">
                 <img src="../public/img/hambuguer-menu-removebg-preview.png" alt="Menu lateral" class="menuIcon">
             </div>
         </nav>
     </header>
     <main>
-        <h1 class="page-title">Nova reserva</h1>
+        <h1 class="page-title">Nova locação</h1>
         <h3 class="page-title">Em desenvolvimento - página modelo</h3>
         <div class="div-content">
             <div class="container">
@@ -37,53 +37,9 @@
                                 <input type="text" class="input-field" required/>
                                 <label class="input-label">Nome</label>
                             </div>
-                            <div class="input">
-                                <input type="text" class="input-field" required/>
-                                <label class="input-label">Sobrenome</label>
-                            </div>
-                        </div>
-                        <div class="input-group">
-                            <div class="input-radio">
-                                <label class="input-label-radio main-label-radio">Tipo do documento</label>
-                                <div class="radio-group">
-                                    <div>
-                                        <label for="masculino">CPF</label>
-                                        <input type="radio" class="input-field" required id="cpf" name="documento" value="cpf"/>
-                                    </div>
-                                    <div>
-                                        <label for="feminino">CNH</label>
-                                        <input type="radio" class="input-field" required id="chn" name="documento" value="cnh"/>
-                                    </div>
-                                    <div>
-                                        <label for="naodefinido">RG</label>
-                                        <input type="radio" class="input-field" required id="rg" name="documento" value="rg"/>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="input">
-                                <input type="number" class="input-field" required/>
-                                <label class="input-label">Número do documento</label>
-                            </div>
-                        </div>
                         
-                        <div class="input-radio">
-                            <label class="input-label-radio main-label-radio">Sexo</label>
-                            <div class="radio-group">
-                                <div>
-                                    <label for="masculino" >Masculino</label>
-                                    <input type="radio" class="input-field" required id="masculino" name="sexo" value="Masculino"/>
-                                </div>
-                                <div>
-                                    <label for="feminino">Feminino</label>
-                                    <input type="radio" class="input-field" required id="feminino" name="sexo" value="Feminino"/>
-                                </div>
-                                <div>
-                                    <label for="naodefinido">Não definido</label>
-                                    <input type="radio" class="input-field" required id="naodefinido" name="sexo" value="Não definido"/>
-                                </div>
-                            </div>
                         </div>
-                        
+
                         <h2 class="header-description">Dados do veículo</h2>
                         <div class="input-group">
                             <div class="input">
