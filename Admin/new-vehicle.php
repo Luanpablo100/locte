@@ -17,7 +17,7 @@
         <h1 class="h1Logo"><a href="/Admin">Locte</a></h1>
         <h1 id="relogio"></h1>
         <nav class="header-nav">
-            <a href="reservation.php"><button class="btn-nova-reserva">Nova locação</button></a>
+            <a href="location.php"><button class="btn-nova-reserva">Nova locação</button></a>
             <div id="div-menu-hamburguer">
                 <img src="../public/img/hambuguer-menu-removebg-preview.png" alt="Menu lateral" class="menuIcon">
             </div>
@@ -30,7 +30,7 @@
             <form class="vehicle-form" action="./src/salvar_veiculo.php" method="POST" enctype="multipart/form-data">
                 <div class="vehicle-card">
 
-                    <img src=".../public/img/car-png.webp" alt="Fiat Mobi" id="img-car">
+                    <img src="../public/img/car-png.webp" alt="Fiat Mobi" id="img-car">
                     <div class="input-group">
                         <input type="file" accept="image/png" id="input-car-img" name="imagem_veiculo" required>
                         <div class="input">

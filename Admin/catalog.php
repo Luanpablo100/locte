@@ -5,13 +5,7 @@ require('../Src/conexao.php');
 $select_veiculos = mysqli_query($conexao, "SELECT marca, modelo, MAX(codigo_imagem) AS imagem, COUNT(*) AS total, MIN(valor) AS valor FROM veiculo WHERE disponivel = 1 GROUP BY marca, modelo ORDER BY marca, modelo;");
 
     if (mysqli_num_rows($select_veiculos) > 0) {
-        
-        $dados_veiculos = mysqli_fetch_assoc($select_veiculos);
-        
-    } else {
-        
-        echo "<script> alert ('NÃO EXISTEM VEICULOS CADASTRADOS!');</script>";
-   
+       $dados_veiculos = mysqli_fetch_assoc($select_veiculos);
     }
 
 ?>
@@ -32,7 +26,7 @@ $select_veiculos = mysqli_query($conexao, "SELECT marca, modelo, MAX(codigo_imag
         <h1 class="h1Logo"><a href="/Admin">Locte</a></h1>
         <h1 id="relogio"></h1>
         <nav class="header-nav">
-            <a href="reservation.php"><button class="btn-nova-reserva">Nova locação</button></a>
+            <a href="location.php"><button class="btn-nova-reserva">Nova locação</button></a>
             <div id="div-menu-hamburguer">
                 <img src="../public/img/hambuguer-menu-removebg-preview.png" alt="Menu lateral" class="menuIcon">
             </div>
@@ -41,8 +35,7 @@ $select_veiculos = mysqli_query($conexao, "SELECT marca, modelo, MAX(codigo_imag
     <main>
         <h1 class="page-title">Veículos</h1>
         <div class="div-content">
-        <?php do{
-		?>
+        <?php if (mysqli_num_rows($select_veiculos) > 0) { do {?>
 				
             <a href="vehicles.php?brand=<?php echo $dados_veiculos['marca'];?>&model=<?php echo $dados_veiculos['modelo'];?>">
                 <div class="vehicle-card">
@@ -61,14 +54,14 @@ $select_veiculos = mysqli_query($conexao, "SELECT marca, modelo, MAX(codigo_imag
                 </div>
             </a>
         		
-		<?php }while ($dados_veiculos = mysqli_fetch_assoc($select_veiculos));?>
+		<?php } while ($dados_veiculos = mysqli_fetch_assoc($select_veiculos));};?>
         
         <a href="new-vehicle.php">
                 <div class="vehicle-card">
                     <div class="vehicle-name">
                         <h2 class="vehicle-name">Novo veículo</h2>
                     </div>
-                    <img src=".../public/img/newcard.png">
+                    <img src="../public/img/newcard.png">
                     <div class="description">
                         <div>
                             <h2>Cadastrar</h2>

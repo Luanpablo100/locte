@@ -1,4 +1,17 @@
-<?php require('./src/valida_admin.php');?>
+<?php require('./src/valida_admin.php');
+
+require('../Src/conexao.php');
+
+$id_vehicle = $_GET['id'];
+$select_veiculo = mysqli_query($conexao, "SELECT * FROM veiculo WHERE id = $id_vehicle;");
+
+
+if (mysqli_num_rows($select_veiculo) > 0) {
+    $dados_veiculo = mysqli_fetch_assoc($select_veiculo);
+}
+echo "<script>alert('".$dados_veiculo['marca']."'</script>";
+
+?>
 
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -17,7 +30,7 @@
         <h1 class="h1Logo"><a href="/Admin">Locte</a></h1>
         <h1 id="relogio"></h1>
         <nav class="header-nav">
-            <a href="reservation.php"><button class="btn-nova-reserva">Nova locação</button></a>
+            <a href="location.php"><button class="btn-nova-reserva">Nova locação</button></a>
             <div id="div-menu-hamburguer">
                 <img src="../public/img/hambuguer-menu-removebg-preview.png" alt="Menu lateral" class="menuIcon">
             </div>
@@ -40,7 +53,7 @@
                 </form>
             </div>
             <form action="vehicles.html" class="vehicle-edit-form">
-                <h1 class="vehicle-name">FIAT MOBI - PUV9244</h1>
+                <h1 class="vehicle-name"><?php $dados_veiculo['marca']; echo " "; $dados_veiculo['modelo']; ?>FIAT MOBI - PUV9244</h1>
                 <div class="input-group">
                     <div class="input">
                         <input type="number" class="input-field" required value="8000"/>
@@ -72,6 +85,9 @@
                     </div>
                     <button class="action-button">Atualizar</button>
                 </div>
+            </form>
+            <form method="POST" action="src/excluir.php?id_vehicle=$">
+                <button>Apagar</button>
             </form>
         </div>
     </main>

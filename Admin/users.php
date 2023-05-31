@@ -28,7 +28,7 @@ $select_usuarios = mysqli_query($conexao, "SELECT * from conta ORDER BY usuario 
         <a href="/Admin"><h1 class="h1Logo">Locte</h1></a>
         <h1 id="relogio"></h1>
         <nav class="header-nav">
-            <a href="reservation.php"><button class="btn-nova-reserva">Nova locação</button></a>
+            <a href="location.php"><button class="btn-nova-reserva">Nova locação</button></a>
             <div id="div-menu-hamburguer">
                 <img src="../public/img/hambuguer-menu-removebg-preview.png" alt="Menu lateral" class="menuIcon">
             </div>
@@ -52,7 +52,7 @@ $select_usuarios = mysqli_query($conexao, "SELECT * from conta ORDER BY usuario 
                   <td><?php echo $dados_usuarios['usuario'];?></td>
                   <td>Gerente</td>
                   <td><?php echo $dados_usuarios['perfil'];?></td>
-                  <td><div class="actions-div" ><img src=".../public/img/chave.png" alt="" class="action-button" onclick="alert('Resetar a senha')"><img src=".../public/img/editar.png" alt="" class="action-button"><img src=".../public/img/lixeira.png" alt="" class="action-button" onclick="alert('Apagar o usuário?')"></div></td>
+                  <td><div class="actions-div" ><img src="../public/img/chave.png" alt="" class="action-button" onclick="alert('Resetar a senha')"><img src="../public/img/editar.png" alt="" class="action-button"><img src="../public/img/lixeira.png" alt="" class="action-button" onclick="alert('Apagar o usuário?')"></div></td>
             </tr>    
         		
 		<?php }while ($dados_usuarios = mysqli_fetch_assoc($select_usuarios));?>
