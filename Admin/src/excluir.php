@@ -2,28 +2,20 @@
 
 require('../../Src/conexao.php');
 
+if (isset($_GET['id_user'])) {
+    $tabela = "conta";
+    $coluna = $_GET['id_user'];
+} else if (isset($_GET['id_vehicle'])) {
+    $tabela = "veiculo";
+    $coluna = $_GET['id_vehicle'];
+} else if (isset($_GET['id_location'])) {
+    $tabela = "locacao";
+    $coluna = $_GET['id_location'];
+} else if (isset($_GET['id_reservation'])) {
+    $tabela = "reserva";
+    $coluna = $_GET['id_reservation'];
+}
 
-	$codigo_conta = $_POST['id_user'];
-    $codigo_veiculo = $_POST['id_vehicle'];
-    $codigo_locacao = $_POST['id_location'];
-    $codigo_reserva = $_POST['id_reservation'];
-
-    if ($codigo_conta != "") {
-        $tabela = "conta";
-        $coluna = $codigo_conta;
-
-    } else if ($codigo_veiculo != "") {
-        $tabela = "veiculo";
-        $coluna = $codigo_veiculo;
-
-    }else if ($codigo_locacao != "") {
-        $tabela = "locacao";
-        $coluna = $codigo_locacao;
-
-    }else if ($codigo_reserva != "") {
-        $tabela = "reserva";
-        $coluna = $codigo_reserva;
-    }
 
 	$delete_query = "DELETE FROM $tabela WHERE id = $coluna";
 	
@@ -45,5 +37,4 @@ require('../../Src/conexao.php');
 				mysqli_close($conexao);
 			}
 	
-
 ?>

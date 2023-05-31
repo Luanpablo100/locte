@@ -88,7 +88,7 @@
                                 <label class="input-label">Cor</label>
                             </div>
                         </div>
-                        <div class="input-group-2">
+                        <!-- <div class="input-group-2">
                             <div class="input">
                                 <input type="text" class="input-field" required value="Alcool/Gasolina" name="combustivel_veiculo"/>
                                 <label class="input-label">Combustível</label>
@@ -97,7 +97,7 @@
                                 <input type="number" class="input-field" required name="passageiros_veiculo"/>
                                 <label class="input-label">Quantidade max. passageiros</label>
                             </div>
-                        </div>
+                        </div> -->
                         <button class="action-button">Cadastrar</button>
                     </div>
                 </div>

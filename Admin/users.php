@@ -40,8 +40,7 @@ $select_usuarios = mysqli_query($conexao, "SELECT * from conta ORDER BY usuario 
         <div class="div-content">
             <table class="tabela-dados">
                 <tr>
-                  <th>Nome</th>
-                  <th>Cargo</th>
+                  <th>Usuário</th>
                   <th>Perfil</th>
                   <th>Ação</th>
                 </tr>
@@ -50,9 +49,8 @@ $select_usuarios = mysqli_query($conexao, "SELECT * from conta ORDER BY usuario 
 		?>
             <tr>
                   <td><?php echo $dados_usuarios['usuario'];?></td>
-                  <td>Gerente</td>
                   <td><?php echo $dados_usuarios['perfil'];?></td>
-                  <td><div class="actions-div" ><img src="../public/img/chave.png" alt="" class="action-button" onclick="alert('Resetar a senha')"><img src="../public/img/editar.png" alt="" class="action-button"><img src="../public/img/lixeira.png" alt="" class="action-button" onclick="alert('Apagar o usuário?')"></div></td>
+                  <td><div class="actions-div" ><img src="../public/img/editar.png" alt="" class="action-button"><img src="../public/img/lixeira.png" alt="" class="action-button" onclick="alert('Apagar o usuário?')"></div></td>
             </tr>    
         		
 		<?php }while ($dados_usuarios = mysqli_fetch_assoc($select_usuarios));?>

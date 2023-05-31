@@ -9,7 +9,6 @@ $select_veiculo = mysqli_query($conexao, "SELECT * FROM veiculo WHERE id = $id_v
 if (mysqli_num_rows($select_veiculo) > 0) {
     $dados_veiculo = mysqli_fetch_assoc($select_veiculo);
 }
-echo "<script>alert('".$dados_veiculo['marca']."'</script>";
 
 ?>
 
@@ -41,53 +40,44 @@ echo "<script>alert('".$dados_veiculo['marca']."'</script>";
         <h3 class="page-title">Em desenvolvimento - página modelo</h3>
         <div class="div-content">
             <div class="vehicle-card">
-                <img src="https://cdn.appdealersites.com.br/saga/blog/1.png" alt="Fiat Mobi">
-                <form action="reservation.php">
+            <img src="data:image/png;base64,<?php echo base64_encode($dados_veiculo['codigo_imagem']);?>" alt="<?php echo $dados_veiculo['marca'];?>&nbsp<?php echo $dados_veiculo['modelo'];?>">
+                <form action="location.php">
                     <div class="input-group">
-                        <div class="input">
-                            <input type="number" class="input-field" required value="250"/>
-                            <label class="input-label">Valor da diária</label>
+                        <?php if($dados_veiculo['disponivel'] == 1) {echo "<div class='form1-actions'><span class='status-veiculos disponivel'>Disponível</span><a href='location.php?id_vehicle=". $dados_veiculo['id'] ."'>Locar</a>";} else if ($dados_veiculo['disponivel'] == 0) {echo "<div class='form1-actions'><span class='status-veiculos locado'>Indisponível</span>";}?>
                         </div>
-                        <button class="action-button">Reservar</button>
                     </div>
                 </form>
             </div>
-            <form action="vehicles.html" class="vehicle-edit-form">
-                <h1 class="vehicle-name"><?php $dados_veiculo['marca']; echo " "; $dados_veiculo['modelo']; ?>FIAT MOBI - PUV9244</h1>
+            <div>
+            <form action="src/editar.php" class="vehicle-edit-form" method="POST">
+                <h1 class="vehicle-name"><?php echo $dados_veiculo['marca'] . " " . $dados_veiculo['modelo'] . " - " . $dados_veiculo['placa'];?></h1>
                 <div class="input-group">
                     <div class="input">
-                        <input type="number" class="input-field" required value="8000"/>
+                        <input type="number" class="input-field" required value="<?php echo $dados_veiculo['quilometragem'];?>" name="quilometragem_veiculo"/>
                         <label class="input-label">Quilometragem total</label>
                     </div>
+                    <div class="input">
+                            <input type="number" class="input-field" required value="<?php echo $dados_veiculo['valor'];?>" name="valor_veiculo"/>
+                            <label class="input-label">Valor da diária</label>
+                        </div>
                     <div class="input-group-2">
                         <div class="input">
-                            <input type="number" class="input-field" disabled value="2020"/>
+                            <input type="number" class="input-field" disabled value="<?php echo $dados_veiculo['ano'];?>"/>
                             <label class="input-label">Ano</label>
                         </div>
                         <div class="input">
-                            <input type="text" class="input-field" required value="Vermelho"/>
+                            <input type="text" class="input-field" required value="<?php echo $dados_veiculo['cor'];?>" name="cor_veiculo"/>
                             <label class="input-label">Cor</label>
                         </div>
                     </div>
-                    <div class="input-group-2">
-                        <div class="input">
-                            <input type="text" class="input-field" required value="Alcool/Gasolina"/>
-                            <label class="input-label">Combustível</label>
+                    <div class="input-group-3">
+                        <button class="action-button">Atualizar</button>
+                        <a href="src/excluir.php?id_vehicle=<?php echo $dados_veiculo['id'];?>"><img src="../public/img/trash.png" alt="Lixeira" class="trash-icon"></a>
                         </div>
-                        <div class="input">
-                            <input type="number" class="input-field" disabled value="5"/>
-                            <label class="input-label">Quantidade max. passageiros</label>
-                        </div>
+                    <div>
                     </div>
-                    <div class="input">
-                        <input type="text" class="input-field" required value="Disponível"/>
-                        <label class="input-label">Situação do veículo</label>
-                    </div>
-                    <button class="action-button">Atualizar</button>
                 </div>
-            </form>
-            <form method="POST" action="src/excluir.php?id_vehicle=$">
-                <button>Apagar</button>
+                <input type="number" hidden value="<?php echo $dados_veiculo['id'];?>" name="id_veiculo"/>
             </form>
         </div>
     </main>

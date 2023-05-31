@@ -76,7 +76,7 @@ if (mysqli_num_rows($select_locacoes) > 0) {
               <?php 
 
                 if (mysqli_num_rows($select_locacoes) <= 0) {
-                    echo "<h2 class='sem-dados-texto'>Não há locações!<h2>";
+                    echo "<h2 class='sem-dados-texto'>Não há locações hoje!<h2>";
                 } else {
                     echo "            
                     <table class='tabela-dados'>

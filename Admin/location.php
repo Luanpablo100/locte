@@ -3,7 +3,7 @@
 // require('../Src/conexao.php');
 require __DIR__ . '/../Src/conexao.php';
 
-$select_veiculos = mysqli_query($conexao, "SELECT marca, modelo FROM veiculo WHERE disponivel = 1 GROUP BY marca, modelo ORDER BY marca, modelo");
+$select_veiculos = mysqli_query($conexao, "SELECT id, marca, modelo FROM veiculo WHERE disponivel = 1 GROUP BY marca, modelo ORDER BY marca, modelo");
 
 $dadosVeiculos = array();
 while ($row = mysqli_fetch_assoc($select_veiculos)) {
@@ -18,6 +18,15 @@ while ($row = mysqli_fetch_assoc($select_clientes)) {
     $dadosClientes[] = $row;
 }
 $dadosClientes_json = json_encode($dadosClientes);
+
+if (isset($_GET['id_vehicle'])) {
+    $id_veiculo = $_GET['id_vehicle'];
+    $select_veiculo_desejado = mysqli_query($conexao, "SELECT id, marca, modelo FROM veiculo WHERE id = $id_veiculo");
+
+    if (mysqli_num_rows($select_veiculo_desejado) > 0) {
+        $dados_veiculo_desejado = mysqli_fetch_assoc($select_veiculo_desejado);
+    }
+}
 
 ?>
 
@@ -65,15 +74,38 @@ $dadosClientes_json = json_encode($dadosClientes);
                         <div class="input-group">
                             <div class="input">
                                 <label class="">Marca</label>
+                                <?php 
+                                    if (isset($dados_veiculo_desejado['id'])) {
+                                        echo '<select name="marca_veiculo" id="marca_veiculo" required>
+                                        <option>'.$dados_veiculo_desejado['marca'].'</option>
+                                    </select>';
+                                    
+                                ?>
+                                
+                                <?php } else { echo '
                                 <select name="marca_veiculo" id="marca_veiculo" onchange="atualizarModelos()" required>
                                     <option>Selecione a marca</option>
-                                </select>
+                                </select>'?>
+
+                                <?php }; ?>
+
                             </div>
                             <div class="input">
                                 <label class="">Modelo</label>
+                                <?php 
+                                    if (isset($dados_veiculo_desejado['id'])) {
+                                        echo '<select name="modelo_veiculo" id="modelo_veiculo" required>
+                                        <option>'.$dados_veiculo_desejado['modelo'].'</option>
+                                    </select>';
+                                    
+                                ?>
+                                
+                                <?php } else { echo '
                                 <select name="modelo_veiculo" id="modelo_veiculo" required>
                                     <option>Selecione o modelo</option>
-                                </select>
+                                </select>'?>
+
+                                <?php }; ?>
                             </div>
                         </div>
                         
@@ -106,7 +138,7 @@ $dadosClientes_json = json_encode($dadosClientes);
                             </div>
                         </div>
                         <div class="action">
-                            <button class="action-button">Reservar</button>
+                            <button class="action-button">Locar</button>
                         </div>
                     </form>
                 </div>
@@ -138,22 +170,14 @@ $dadosClientes_json = json_encode($dadosClientes);
             </li>
         </ul>
     </aside>
+    <?php if (!isset($_GET['id_vehicle'])) { ?>
     <script>
 
-        var dadosClientes = <?php echo $dadosClientes_json; ?>;
         var dadosVeiculos = <?php echo $dadosVeiculos_json; ?>;
-
-        console.log(dadosClientes)
-
-        var selectCliente = document.getElementById('select_cliente');
+        
         var selectMarca = document.getElementById('marca_veiculo');
         var selectModelo = document.getElementById('modelo_veiculo');
 
-            for (var i = 0; i < dadosClientes.length; i++) {
-                    var option = document.createElement('option');
-                    option.text = `${dadosClientes[i].nome} - ${dadosClientes[i].email}` ;
-                    selectCliente.add(option);
-            }
 
             for (var i = 0; i < dadosVeiculos.length; i++) {
                     var option = document.createElement('option');
@@ -179,8 +203,19 @@ $dadosClientes_json = json_encode($dadosClientes);
 
     </script>
 
+<?php }?>
 
+<script>
+    var dadosClientes = <?php echo $dadosClientes_json; ?>;
+    var selectCliente = document.getElementById('select_cliente');
 
+    for (var i = 0; i < dadosClientes.length; i++) {
+        var option = document.createElement('option');
+        option.text = `${dadosClientes[i].nome} - ${dadosClientes[i].email}` ;
+        selectCliente.add(option);
+    }
+    
+</script>
     <script src="../public/scripts/clock.js"></script>
     <script src="../public/scripts/asideMenu.js"></script>
 </body>

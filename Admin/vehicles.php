@@ -75,7 +75,8 @@ $select_veiculos = mysqli_query($conexao, "SELECT * FROM veiculo WHERE marca ='$
                             <td><?php echo $dados_veiculos['quilometragem'];?> KM</td>
 						    <td><?php if($dados_veiculos['disponivel'] == 1) {echo "<span class='status-veiculos disponivel'>Disponível<span>";} else {echo "<span class='status-veiculos locado'>Locado<span>";}?></td>
                             <td>R$ <?php echo $dados_veiculos['valor'];?></td>
-                            <td><a href="edit-vehicle.php?id=<?php echo $dados_veiculos['id'];?>">Editar</a> Locar</td>
+                            <td><a href="edit-vehicle.php?id=<?php echo $dados_veiculos['id'];?>">Editar</a><?php if($dados_veiculos['disponivel'] == 1) {echo "<a href='location.php?id_vehicle=". $dados_veiculos['id'] ."'>Locar</a>";} else if ($dados_veiculos['disponivel'] == 0) {echo "";}?>
+</td>
 					    </tr>
 
 				<?php } while ($dados_veiculos = mysqli_fetch_assoc($select_veiculos));}?>                                   
