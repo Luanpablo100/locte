@@ -2,7 +2,7 @@
 
 require('../../Src/conexao.php');
 
-if (isset($_POST['tipo_veiculo'])) {      
+if (isset($_POST['tipo_pagamento'])) {      
 	
 	$tipo_veiculo = $_POST['tipo_veiculo'];
 	$placa_veiculo = $_POST['placa_veiculo'];

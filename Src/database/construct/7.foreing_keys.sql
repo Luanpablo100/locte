@@ -1,3 +1,5 @@
+ALTER TABLE `locacao` ADD `pagamento` ENUM("Avista", "Debito", "Credito", "CreditoParcelado") NOT NULL AFTER `valor`;
+
 ALTER TABLE `cliente`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `email` (`email`),

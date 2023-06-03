@@ -21,25 +21,21 @@ if (isset($_POST['id_user'])) {
     $id = $_POST['id_reservation'];
 }
 
+if (mysqli_query($conexao,$delete_query)) {
 
-	
-	
-	
-		if (mysqli_query($conexao,$delete_query)) {
+        mysqli_close($conexao);
 
-				mysqli_close($conexao);
+        echo "<script> alert ('ATUALIZAÇÃO REALIZADA COM SUCESSO!');</script>";
 
-				echo "<script> alert ('ATUALIZAÇÃO REALIZADA COM SUCESSO!');</script>";
+        echo "<script> window.location.href='$url_admin';</script>";
+        
+    } else {
+    
+        echo "<script> alert ('ERRO: NÃO FOI POSSÍVEL ATUALIZAR.');</script>";
 
-				echo "<script> window.location.href='$url_admin';</script>";
-				
-			} else {
-			
-				echo "<script> alert ('ERRO: NÃO FOI POSSÍVEL ATUALIZAR.');</script>";
-
-				echo "<script> window.location.href='$url_admin';</script>";
-				
-				mysqli_close($conexao);
-			}
+        echo "<script> window.location.href='$url_admin';</script>";
+        
+        mysqli_close($conexao);
+    }
 	
 ?>
