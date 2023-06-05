@@ -1,27 +1,19 @@
 <?php 
 
-require('../../Src/conexao.php');
+require('conexao.php');
 
 
 	$id_cliente = $_POST['select_cliente'];
 	$id_veiculo = $_POST['modelo_veiculo'];
-	$km_inicial = $_POST['km_veiculo'];
 	$data_inicio = $_POST['data_inicio'];
 	$data_termino = $_POST['data_entrega'];
 	$hora_inicio = $_POST['hora_inicio'];
 	$hora_termino = $_POST['hora_entrega'];
-	$valor = $_POST['valor_locacao'];
-	$pagamento = $_POST['pagamento'];
 
 	$hora_inicio = $hora_inicio . ":00";
 	$hora_termino = $hora_termino . ":00";
 
-    // Substituir a vírgula do valor por ponto
-	if (strpos($valor, ',') !== false) {
-    $valor = str_replace(',', '.', $valor);
-}
-
-	$insert_locacao = "INSERT INTO locacao (km_inicial, valor, pagamento, idCliente, idVeiculo, data_inicio, data_termino, hora_inicio, hora_termino) VALUES ('".$km_inicial."','".$valor."','".$pagamento."','".$id_cliente."','".$id_veiculo."','".$data_inicio."','".$data_termino."','".$hora_inicio."','".$hora_termino."')";
+	$insert_locacao = "INSERT INTO reserva (pagamento, idCliente, idVeiculo, data_inicio, data_termino, hora_inicio, hora_termino) VALUES ('".$id_cliente."','".$id_veiculo."','".$data_inicio."','".$data_termino."','".$hora_inicio."','".$hora_termino."')";
 	$update_disposnibilidade_veiculo = "UPDATE `veiculo` SET `disponivel` = '0' WHERE `veiculo`.`id` = $id_veiculo;";
 
 	if (mysqli_query($conexao,$insert_locacao)) {

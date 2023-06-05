@@ -2,13 +2,16 @@
 
 require('../Src/conexao.php');
 
-$select_veiculos = mysqli_query($conexao, "SELECT marca, modelo, MAX(codigo_imagem) AS imagem, SUM(disponivel) AS disponiveis, COUNT(*) AS total, MIN(valor) AS valor FROM veiculo GROUP BY marca, modelo ORDER BY marca, modelo;");
-
-    if (mysqli_num_rows($select_veiculos) > 0) {
-       $dados_veiculos = mysqli_fetch_assoc($select_veiculos);
+//Script que faz o select das informações de reserva, incluindo o nome do cliente e modelo e marca do veiculo
+$select_usuarios = mysqli_query($conexao, "SELECT * from conta ORDER BY usuario ASC;");
+            
+    if (mysqli_num_rows($select_usuarios) > 0) {
+        
+        $dados_usuarios = mysqli_fetch_assoc($select_usuarios);
+        
     }
-
 ?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -18,7 +21,6 @@ $select_veiculos = mysqli_query($conexao, "SELECT marca, modelo, MAX(codigo_imag
     <title>Locte - Gerenciamento de locação</title>
     <link rel="stylesheet" href="../public/style/normalize.css">
     <link rel="stylesheet" href="../public/style/main.css">
-    <link rel="stylesheet" href="../public/style/catalog.css">
     <link rel="shortcut icon" href="../public/img/car.svg">
 </head>
 <body>
@@ -33,42 +35,27 @@ $select_veiculos = mysqli_query($conexao, "SELECT marca, modelo, MAX(codigo_imag
         </nav>
     </header>
     <main>
-        <h1 class="page-title">Veículos</h1>
+        <h1 class="page-title">Usuários</h1>
+        <h3 class="page-title">Em desenvolvimento - algumas funções podem não estar completas</h3>
         <div class="div-content">
-        <?php if (mysqli_num_rows($select_veiculos) > 0) { do {?>
-				
-            <a href="vehicles.php?brand=<?php echo $dados_veiculos['marca'];?>&model=<?php echo $dados_veiculos['modelo'];?>">
-                <div class="vehicle-card">
-                    <div class="vehicle-name">
-                        <h2 class="vehicle-name"><?php echo $dados_veiculos['marca'];?>&nbsp<?php echo $dados_veiculos['modelo'];?></h2>
-                    </div>
-                    <img src="data:image/png;base64,<?php echo base64_encode($dados_veiculos['imagem']);?>" alt="<?php echo $dados_veiculos['marca'];?>&nbsp<?php echo $dados_veiculos['modelo'];?>">
-                    <div class="description">
-                        <div>
-                            <h2>Diária <span>R$ <?php echo $dados_veiculos['valor'];?></span></h2>
-                        </div>
-                        <div>
-                            <h3><?php echo $dados_veiculos['disponiveis'];?> disponíveis</h3>
-                        </div>
-                    </div>
-                </div>
-            </a>
+            <table class="tabela-dados">
+                <tr>
+                  <th>Usuário</th>
+                  <th>Perfil</th>
+                  <th>Ação</th>
+                </tr>
+
+                <?php do{
+		?>
+            <tr>
+                  <td><?php echo $dados_usuarios['usuario'];?></td>
+                  <td><?php echo $dados_usuarios['perfil'];?></td>
+                  <td><div class="actions-div" ><img src="../public/img/editar.png" alt="" class="action-button"><img src="../public/img/lixeira.png" alt="" class="action-button" onclick="alert('Apagar o usuário?')"></div></td>
+            </tr>    
         		
-		<?php } while ($dados_veiculos = mysqli_fetch_assoc($select_veiculos));};?>
-        
-        <a href="new-vehicle.php">
-                <div class="vehicle-card">
-                    <div class="vehicle-name">
-                        <h2 class="vehicle-name">Novo veículo</h2>
-                    </div>
-                    <img src="../public/img/newcard.png">
-                    <div class="description">
-                        <div>
-                            <h2>Cadastrar</h2>
-                        </div>
-                    </div>
-                </div>
-            </a>
+		<?php }while ($dados_usuarios = mysqli_fetch_assoc($select_usuarios));?>
+                                      
+              </table>
         </div>
     </main>
     <aside class="menuLateral hidden" id="asideMenu">
@@ -78,16 +65,16 @@ $select_veiculos = mysqli_query($conexao, "SELECT marca, modelo, MAX(codigo_imag
                 Gerenciar
             </li>
             <li>
-                <a href="catalog.php">Veículos</a>
+                <a href="./catalog.php">Veículos</a>
             </li>
             <li>
-                <a href="reservations.php">Reservas</a>
+                <a href="./reservations.php">Reservas</a>
             </li>
             <li>
-                <a href="locations.php">Locações</a>
+                <a href="./locations.php">Locações</a>
             </li>
             <li>
-                <a href="users.php">Usuários</a>
+                <a href="./users.php">Usuários</a>
             </li>
             <li>
                 <form action="../Src/logoff.php">
@@ -99,4 +86,3 @@ $select_veiculos = mysqli_query($conexao, "SELECT marca, modelo, MAX(codigo_imag
     <script src="../public/scripts/clock.js"></script>
     <script src="../public/scripts/asideMenu.js"></script>
 </body>
-</html>

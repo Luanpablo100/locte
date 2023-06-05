@@ -37,7 +37,6 @@ if (mysqli_num_rows($select_veiculo) > 0) {
     </header>
     <main>
         <h1 class="page-title">Editar veículo</h1>
-        <h3 class="page-title">Em desenvolvimento - página modelo</h3>
         <div class="div-content">
             <div class="vehicle-card">
             <img src="data:image/png;base64,<?php echo base64_encode($dados_veiculo['codigo_imagem']);?>" alt="<?php echo $dados_veiculo['marca'];?>&nbsp<?php echo $dados_veiculo['modelo'];?>">
