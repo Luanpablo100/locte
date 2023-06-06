@@ -7,7 +7,8 @@ $select_reservas = mysqli_query($conexao, "SELECT reserva.*,cliente.nome,veiculo
 $select_locacoes = mysqli_query($conexao, "SELECT locacao.*,cliente.nome,veiculo.marca,veiculo.modelo,veiculo.cor,veiculo.placa from locacao JOIN cliente on locacao.idCliente = cliente.id JOIN veiculo ON locacao.idVeiculo = veiculo.id WHERE data_termino = CURDATE() ORDER BY data_termino ASC;");
         
 if (mysqli_num_rows($select_locacoes) > 0) {
-        
+
+    $dados_reserva = mysqli_fetch_assoc($select_reservas);
     $dados_locacao = mysqli_fetch_assoc($select_locacoes);
     
 }
