@@ -60,7 +60,7 @@ $dados_cliente = mysqli_fetch_assoc($select_cliente);
                             <label class="input-label">Email</label>
                         </div>
                         <div class="input-group">
-                        <div class="radio-group">
+                        <div class="radio-group" style="color:black;">
                                     <div>
                                         <label for="tipo_cpf">CPF</label>
                                         <input type="radio" class="input-radio" required id="tipo_cpf" name="tipo_documento" value="CPF"/>
@@ -77,13 +77,13 @@ $dados_cliente = mysqli_fetch_assoc($select_cliente);
                        
                         
                     </div>
-                    <div class="input-group-2">
+                    <div class="input-group-2" >
                         <div class="input">
                             <input type="number" class="input-field" required name="telefone_cliente" maxlength="14"/>
                             <label class="input-label">Telefone</label>
                         </div>
                     </div>
-                    <div class="input">
+                    <div class="input" >
                             <input type="text" class="input-field" required name="nmr_documento"/>
                             <label class="input-label">Número do documento</label>
                     </div>

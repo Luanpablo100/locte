@@ -56,7 +56,7 @@
                             <input type="number" class="input-field" required value="0" name="quilometragem_veiculo"/>
                             <label class="input-label">Quilometragem total</label>
                         </div>
-                        <div class="radio-group">
+                        <div class="radio-group" style="color:black;">
                                     <div>
                                         <label for="tipo_carro">Carro</label>
                                         <input type="radio" class="input-radio" required id="tipo_carro" name="tipo_veiculo" value="Carro"/>
