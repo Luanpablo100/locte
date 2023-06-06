@@ -63,7 +63,6 @@ if (mysqli_num_rows($select_locacoes) > 0) {
                         <td><?php echo $dados_reserva['marca'];?>&nbsp<?php echo $dados_reserva['modelo'];?></td>
                         <td><?php echo $dados_reserva['cor'];?></td>
                         <td><?php echo $dados_reserva['placa'];?></td>
-                        <td><?php echo $dados_reserva['hora_inicio'];?></td>
 						<td><?php echo $dados_reserva['data_inicio'];?></td>
                         <td>X Y Z</td>
 					</tr>

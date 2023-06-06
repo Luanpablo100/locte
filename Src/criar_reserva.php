@@ -24,13 +24,13 @@ require('conexao.php');
 
 		mysqli_close($conexao);
 
-		echo "<script> alert ('LOCACAO CRIADA COM SUCESSO!');</script>";
+		echo "<script> alert ('RESERVA CRIADA COM SUCESSO!');</script>";
 
 		echo "<script> window.location.href='$url_cliente';</script>";
 		
 	} else {
 
-		echo "<script> alert ('ERRO: NÃO FOI POSSÍVEL LOCAR O VEICULO.');</script>";
+		echo "<script> alert ('ERRO: NÃO FOI POSSÍVEL RESERVAR O VEICULO.');</script>";
 
 		echo "<script> window.location.href='$url_cliente';</script>";
 		
