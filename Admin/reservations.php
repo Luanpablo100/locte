@@ -59,8 +59,7 @@ $select_reservas = mysqli_query($conexao, "SELECT reserva.*,cliente.nome,veiculo
                         <td><?php echo $dados_reserva['placa'];?></td>
                         <td><?php echo $dados_reserva['hora_inicio'];?></td>
 						<td><?php echo $dados_reserva['data_inicio'];?></td>
-                        <td>X Y Z</td>
-						
+                        <td><a href="src/excluir_reserva.php?id_reservation=<?php echo $dados_reserva['id'];?>&id_vehicle=<?php echo $dados_reserva['idVeiculo'];?>">Excluir</a>  <form action="src/criar_locacao.php" method="POST">   <input value="" name="select_cliente" id="select_cliente" hidden/>   <input value="" name="modelo_veiculo" id="modelo_veiculo" hidden/>  <input value="" name="select_cliente" id="select_cliente" hidden/>   <input value="" id="data_inicio" name="data_inicio" hidden/> <input value="" id="data_entrega" name="data_entrega" hidden/>  <input value="" id="hora_inicio" name="hora_inicio" hidden/> <input value="" id="hora_entrega" name="hora_entrega"hidden/> <input value="" id="valor_locacao" name="valor_locacao" hidden/>  <input value="" name="pagamento" hidden/> <button>Iniciar locação</button></form></td>
 					</tr>
 
 				<?php } while ($dados_reserva = mysqli_fetch_assoc($select_reservas));} else {echo "Não há reservas!";}?>
