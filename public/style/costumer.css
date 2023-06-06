@@ -37,3 +37,35 @@
     background-image: url('../img/checklist.jpg');
     background-size: cover;
 }
+
+.dropdown-user {
+    position: absolute;
+    background-color: #27b879;
+    width: 200px;
+    height: 160px;
+    right: 45px;
+    top: 70px;
+    border-radius: 10px 0px 10px 10px;
+}
+
+.dropdown-user.hidden {
+    display: none;
+}
+
+.dropdown-user ul {
+    list-style: none;
+}
+
+.dropdown-user ul li {
+    margin: 20px 0px;
+}
+
+.dropdown-user ul li a {
+    color: white;
+    font-size: 15pt;
+}
+
+#input-doc-img {
+    width: 60px;
+    height: 60px;
+}

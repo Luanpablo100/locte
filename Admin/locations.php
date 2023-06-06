@@ -57,7 +57,7 @@ $select_locacoes = mysqli_query($conexao, "SELECT locacao.*,cliente.nome,veiculo
                       <th>Ação</th>
                     </tr>
                     ";
-                    while ($dados_locacao = mysqli_fetch_assoc($select_locacoes)) {
+                    do {
 			    ?>
 					
 					<tr>
@@ -71,7 +71,7 @@ $select_locacoes = mysqli_query($conexao, "SELECT locacao.*,cliente.nome,veiculo
                         <td>X Y Z</td>
 					</tr>
 
-				<?php };}?>                                   
+				<?php }while ($dados_locacao = mysqli_fetch_assoc($select_locacoes));}?>                                   
               </table>
         </div>
     </main>

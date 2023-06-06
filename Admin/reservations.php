@@ -6,9 +6,7 @@ require('../Src/conexao.php');
 $select_reservas = mysqli_query($conexao, "SELECT reserva.*,cliente.nome,veiculo.marca,veiculo.modelo,veiculo.cor,veiculo.placa from reserva JOIN cliente on reserva.idCliente = cliente.id JOIN veiculo ON reserva.idVeiculo = veiculo.id ORDER BY hora_inicio ASC;");
             
     if (mysqli_num_rows($select_reservas) > 0) {
-        
         $dados_reserva = mysqli_fetch_assoc($select_reservas);
-        
     }
 ?>
 
@@ -48,7 +46,9 @@ $select_reservas = mysqli_query($conexao, "SELECT reserva.*,cliente.nome,veiculo
                   <th>Data</th>
                   <th>Ação</th>
                 </tr>
-            <?php while ($dados_reserva = mysqli_fetch_assoc($select_reservas)){
+            <?php 
+            if (mysqli_num_rows($select_reservas) > 0) {
+            do {
 			?>
 					
 					<tr>
@@ -63,7 +63,7 @@ $select_reservas = mysqli_query($conexao, "SELECT reserva.*,cliente.nome,veiculo
 						
 					</tr>
 
-				<?php };?>
+				<?php } while ($dados_reserva = mysqli_fetch_assoc($select_reservas));} else {echo "Não há reservas!";}?>
 
               </table>
         </div>

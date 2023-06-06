@@ -1,5 +1,6 @@
 ALTER TABLE `locacao` ADD `pagamento` ENUM("Avista", "Debito", "Credito", "CreditoParcelado") NOT NULL AFTER `valor`;
 ALTER TABLE `locacao` ADD `fechada` BOOLEAN NOT NULL DEFAULT FALSE AFTER `hora_termino`;
+ALTER TABLE `cliente` ADD `foto_documento` LONGBLOB NOT NULL AFTER `IdConta`;
 
 ALTER TABLE `cliente`
   ADD PRIMARY KEY (`id`),

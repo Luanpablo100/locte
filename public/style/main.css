@@ -141,10 +141,10 @@ main {
     cursor: pointer;
 }
 
-.actions-div {
-    width: 100%;
-    display: flex;
-    justify-content: space-evenly;
+.action-div {
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
 }
 
 .sem-dados-texto {

@@ -40,9 +40,9 @@ if (mysqli_num_rows($select_veiculo) > 0) {
         <div class="div-content">
             <div class="vehicle-card">
             <img src="data:image/png;base64,<?php echo base64_encode($dados_veiculo['codigo_imagem']);?>" alt="<?php echo $dados_veiculo['marca'];?>&nbsp<?php echo $dados_veiculo['modelo'];?>">
-                <form action="location.php">
+                <form>
                     <div class="input-group">
-                        <?php if($dados_veiculo['disponivel'] == 1) {echo "<div class='form1-actions'><span class='status-veiculos disponivel'>Disponível</span><a href='location.php?id_vehicle=". $dados_veiculo['id'] ."'>Locar</a>";} else if ($dados_veiculo['disponivel'] == 0) {echo "<div class='form1-actions'><span class='status-veiculos locado'>Indisponível</span>";}?>
+                        <?php if($dados_veiculo['disponivel'] == 1) {echo "<div class='form1-actions'><span class='status-veiculos disponivel'>Disponível</span><a href='location.php?id_vehicle=". $dados_veiculo['id'] ."'><div class='action-div'>Locar</div></a>";} else if ($dados_veiculo['disponivel'] == 0) {echo "<div class='form1-actions'><span class='status-veiculos locado'>Indisponível</span>";}?>
                         </div>
                     </div>
                 </form>

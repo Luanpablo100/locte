@@ -19,6 +19,11 @@ $dadosCliente = array();
 while ($row = mysqli_fetch_assoc($select_cliente)) {
     $dadosCliente[] = $row;
 }
+
+array_walk_recursive($dadosCliente, function (&$value) {
+    $value = utf8_encode($value);
+});
+
 $dadosCliente_json = json_encode($dadosCliente);
 
 if (isset($_GET['id_vehicle'])) {
@@ -31,14 +36,13 @@ if (isset($_GET['id_vehicle'])) {
 }
 
 ?>
-
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Locte - Gerenciamento de locação</title>
+    <title>Locte - Locação de veículos</title>
     <link rel="stylesheet" href="../public/style/normalize.css">
     <link rel="stylesheet" href="../public/style/main.css">
     <link rel="stylesheet" href="../public/style/reservation.css">
@@ -51,7 +55,14 @@ if (isset($_GET['id_vehicle'])) {
         <h1 id="relogio"></h1>
         <nav class="header-nav">
             <div id="div-menu-hamburguer">
-                <img src="../public/img/hambuguer-menu-removebg-preview.png" alt="Menu lateral" class="menuIcon">
+                <img src="../public/img/do-utilizador.png" alt="Menu lateral" class="menuIcon">
+            </div>
+            <div class="dropdown-user hidden" id="dropdown-user">
+                <ul>
+                    <li><a href="catalog.php">Catálogo</a></li>
+                    <li><a href="profile.php">Perfil</a></li>
+                    <li><a href="../Src/logoff.php">Logoff</a></li>
+                </ul>
             </div>
         </nav>
     </header>
@@ -68,7 +79,7 @@ if (isset($_GET['id_vehicle'])) {
 
                                 <?php
                                 if (mysqli_num_rows($select_cliente) > 0) {
-                                    echo '<input type="text" class="input-field" id="input_cliente" name="input_cliente" value="" disabled/><input type="text" hidden class="input-field" id="select_cliente" name="select_cliente" disabled/>';
+                                    echo '<input type="text" class="input-field" id="input_cliente" name="input_cliente" value="" disabled /><input type="text" hidden class="input-field" id="select_cliente" name="select_cliente" value=""/>';
                                 } else {
                                     echo '<p class="paragraph-black">Preecha seus dados na <a href="profile.php">página de perfil</a> antes de continuar!';
                                 };
@@ -102,7 +113,7 @@ if (isset($_GET['id_vehicle'])) {
                                 <?php 
                                     if (isset($dados_veiculo_desejado['id'])) {
                                         echo '<select name="modelo_veiculo" id="modelo_veiculo" required>
-                                        <option>'.$dados_veiculo_desejado['modelo'].'</option>
+                                        <option value="'.$dados_veiculo_desejado['id'].'">'.$dados_veiculo_desejado['modelo'].'</option>
                                     </select>';
                                     
                                 ?>
@@ -187,6 +198,21 @@ if (isset($_GET['id_vehicle'])) {
         }
     </script>
 
+    
+<?php
+    if (mysqli_num_rows($select_cliente) > 0) { ?>
+        <script>
+            var dadosCliente = <?php echo $dadosCliente_json; ?>;
+            var inputCliente = document.getElementById('input_cliente');
+            var selectCliente = document.getElementById('select_cliente');
+            
+            inputCliente.value = `${dadosCliente[0].nome} - ${dadosCliente[0].email}`
+            selectCliente.value = `${dadosCliente[0].id}`
+
+        </script>
+
+    <?php };?>
+
     <?php if (!isset($_GET['id_vehicle'])) { ?>
     <script>
 
@@ -234,26 +260,6 @@ if (isset($_GET['id_vehicle'])) {
         inputKmVeiculo.value = dadosVeiculos[0].quilometragem
     </script>
 <?php };?>
-
-
-
-<?php
-    if (mysqli_num_rows($select_cliente) > 0) { ?>
-        <script>
-        var dadosCliente = <?php echo $dadosCliente_json; ?>;
-        var inputCliente = document.getElementById('input_cliente');
-        var selectCliente = document.getElementById('select_cliente');
-
-        inputCliente.value = `${dadosCliente[0].nome} - ${dadosCliente[0].email}`
-        selectCliente.value = `${dadosCliente[0].id}`
-        selectCliente.value = `1`
-
-</script>
-
-    <?php } else { ?>
-
-    <?php };?>
-
 
 <script>
 
@@ -303,5 +309,6 @@ function calcularDiferencaHoras() {
     }
 }
 </script>
+<script src="../public/scripts/asideMenuUser.js"></script>
 </body>
 </html>

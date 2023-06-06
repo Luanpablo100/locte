@@ -15,10 +15,11 @@ $select_veiculos = mysqli_query($conexao, "SELECT marca, modelo, MAX(codigo_imag
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Locte - Gerenciamento de locação</title>
+    <title>Locte - Locação de veículos</title>
     <link rel="stylesheet" href="../public/style/normalize.css">
     <link rel="stylesheet" href="../public/style/main.css">
     <link rel="stylesheet" href="../public/style/catalog.css">
+    <link rel="stylesheet" href="../public/style/costumer.css">
     <link rel="shortcut icon" href="../public/img/car.svg">
 </head>
 <body>
@@ -28,6 +29,13 @@ $select_veiculos = mysqli_query($conexao, "SELECT marca, modelo, MAX(codigo_imag
         <nav class="header-nav">
             <div id="div-menu-hamburguer">
                 <img src="../public/img/do-utilizador.png" alt="icone-Usuario" class="menuIcon">
+            </div>
+            <div class="dropdown-user hidden" id="dropdown-user">
+                <ul>
+                    <li><a href="catalog.php">Catálogo</a></li>
+                    <li><a href="profile.php">Perfil</a></li>
+                    <li><a href="../Src/logoff.php">Logoff</a></li>
+                </ul>
             </div>
         </nav>
     </header>
@@ -56,5 +64,6 @@ $select_veiculos = mysqli_query($conexao, "SELECT marca, modelo, MAX(codigo_imag
 		<?php } while ($dados_veiculos = mysqli_fetch_assoc($select_veiculos));};?>
         </div>
     </main>
+    <script src="../public/scripts/asideMenuUser.js"></script>
 </body>
 </html>

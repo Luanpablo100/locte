@@ -45,7 +45,7 @@
 			
 		} else {
 
-		echo "<script> alert('Erro ao fazer login. Tente novamente ou fale com o Administrador.');</script>";
+		echo "<script> alert('Usuário ou senha incorreta.');</script>";
 
 		echo "<script> window.location.href='$url';</script>";
 			

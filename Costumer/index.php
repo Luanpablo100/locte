@@ -26,6 +26,13 @@ $select_reservas = mysqli_query($conexao, "SELECT reserva.*,cliente.nome,veiculo
             <div id="div-menu-hamburguer">
                 <img src="../public/img/do-utilizador.png" alt="Menu lateral" class="menuIcon">
             </div>
+            <div class="dropdown-user hidden" id="dropdown-user">
+                <ul>
+                    <li><a href="catalog.php">Catálogo</a></li>
+                    <li><a href="profile.php">Perfil</a></li>
+                    <li><a href="../Src/logoff.php">Logoff</a></li>
+                </ul>
+            </div>
         </nav>
     </header>
     <main>
@@ -45,5 +52,6 @@ $select_reservas = mysqli_query($conexao, "SELECT reserva.*,cliente.nome,veiculo
             </div>
         </div>
     </main>
+    <script src="../public/scripts/asideMenuUser.js"></script>
 </body>
 </html>

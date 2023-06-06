@@ -17,6 +17,12 @@ $dadosClientes = array();
 while ($row = mysqli_fetch_assoc($select_clientes)) {
     $dadosClientes[] = $row;
 }
+
+// array_walk_recursive($dadosClientes, function (&$value) {
+//     $value = utf8_encode($value);
+// });
+
+
 $dadosClientes_json = json_encode($dadosClientes);
 
 if (isset($_GET['id_vehicle'])) {
@@ -95,13 +101,13 @@ if (isset($_GET['id_vehicle'])) {
                                 <?php 
                                     if (isset($dados_veiculo_desejado['id'])) {
                                         echo '<select name="modelo_veiculo" id="modelo_veiculo" required>
-                                        <option>'.$dados_veiculo_desejado['modelo'].'</option>
+                                        <option value="'.$dados_veiculo_desejado['id'].'">'.$dados_veiculo_desejado['modelo'].'</option>
                                     </select>';
                                     
                                 ?>
                                 
                                 <?php } else { echo '
-                                <select name="modelo_veiculo" id="modelo_veiculo" required  disabled>
+                                <select name="modelo_veiculo" id="modelo_veiculo" required disabled>
                                     <option>Selecione o modelo</option>
                                 </select>'?>
 
@@ -138,7 +144,8 @@ if (isset($_GET['id_vehicle'])) {
                             </div>
                             <div>
                                 <h3>Valor da locação</h3>
-                                <input type="number" class="input-field" id="valor_locacao" name="valor_locacao" step="0.01" disabled/>
+                                <h2 id="card_location_value">R$0</h2>
+                                <input type="number" class="input-field" id="valor_locacao" name="valor_locacao" step="0.01" hidden/>
                             </div>
                         </div>
 
@@ -192,6 +199,18 @@ if (isset($_GET['id_vehicle'])) {
             </li>
         </ul>
     </aside>
+    <script>
+
+        var dadosClientes = <?php echo $dadosClientes_json; ?>;
+        var selectCliente = document.getElementById('select_cliente');
+
+        var option = document.createElement('option');
+        option.text = `${dadosClientes[0].nome} - ${dadosClientes[0].email}`
+        option.value = `${dadosClientes[0].id}`
+        selectCliente.add(option);
+
+
+    </script>
 
     <script>
         let dataRetirada = document.getElementById("data_inicio")
@@ -225,7 +244,6 @@ if (isset($_GET['id_vehicle'])) {
 
         function atualizarModelos() {
 
-            // selectModelo.innerHTML = '<option>Selecione o modelo</option>'
             selectModelo.innerHTML = ''
             selectModelo.removeAttribute('disabled');
 
@@ -272,6 +290,7 @@ function calcularDiferencaHoras() {
     var selectModelo = document.getElementById('modelo_veiculo');
 
     let inputValorLocacao = document.getElementById("valor_locacao")
+    let divValorLocacao = document.getElementById("card_location_value")
 
     var dadosVeiculos = <?php echo $dadosVeiculos_json; ?>;
 
@@ -296,6 +315,7 @@ function calcularDiferencaHoras() {
                 let valorLocação = (horaTotalLocacao * valorHoraVeiculo).toFixed(2)
 
                 inputValorLocacao.value = valorLocação
+                divValorLocacao.innerText = "R$" + valorLocação
 
             }
         }

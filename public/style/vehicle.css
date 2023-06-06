@@ -140,6 +140,19 @@ input {
 	border: 0;
 }
 
+.action-div {
+	font-size: 15pt;
+    padding: 10px;
+	width: 100px;
+    height: 30px;
+	font-weight: 500;
+	background-color: #32BEA6;
+	border-radius: 6px;
+	color: #FFF;
+	border: 0;
+	text-align: center;
+}
+
 .status-veiculos {
     border-radius: 10px;
     padding: 10px 20px;
